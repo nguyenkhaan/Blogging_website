@@ -5,8 +5,8 @@ import InnerBlog from './Pages/InnerBlog'
 function App() {
     return (
         <div className='w-full relative overflow-y-scroll'>
-            {/* <Home /> */}
-            <InnerBlog></InnerBlog>
+            { <Home /> }
+            {/* { <InnerBlog></InnerBlog> } */}
         </div>
     )
 }
