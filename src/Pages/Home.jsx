@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Navbar from '../Component/Home/Navbar'
-import Slider from '../Component/Home/Slider';
+import Slider from '../Component/Slider';
+import Navbar from '../Component/Navbar';
 const slides = [
     "http://localhost:5173/Image/background-slider-1.jpg",
     "http://localhost:5173/Image/background-slider-2.jpg",
