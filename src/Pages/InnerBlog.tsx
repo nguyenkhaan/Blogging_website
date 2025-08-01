@@ -76,7 +76,7 @@ export default function InnerBlog() {
               blanditiis accusantium. A, assumenda.
             </p>
 
-            <figure className="w-full h-90 ">
+            <figure className="w-full max-h-90 ">
               <img src="/public/Image/background-slider-1.jpg" alt="" />
             </figure>
 

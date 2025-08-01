@@ -297,6 +297,9 @@
   .max-h-70 {
     max-height: calc(var(--spacing) * 70);
   }
+  .max-h-90 {
+    max-height: calc(var(--spacing) * 90);
+  }
   .\!w-12 {
     width: calc(var(--spacing) * 12) !important;
   }
