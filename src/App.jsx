@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Home from './Pages/Home'
 function App()
 {
     return (
-        <div>
-            Xin chao cac ban
+        <div className='w-full relative'>
+            <Home /> 
         </div>
     )
 }
