@@ -11,14 +11,14 @@ function RelatedBlog({
         </li>
     )
 }
-const middleLineProps = () => {
+const middleLineProps = () => {  //Đường line phân cách ở giữa, sử dụng padding và border lại cho padding 
     return (
         "px-3 border-solid border-x-1 border-gray-300"
     )
 }
 function Blog({
-    blogTitle = 'My Blog Everyday', 
-    middle = false, 
+    blogTitle = 'My Blog Everyday', //Dữ liệu nhận vào gồm có title của bài viết
+    middle = false,   //Biến middle xem cơ phải là phần tử ở giũa không để thêm middleLine 
     subblog = ['My blog Everyday' , 'My blog Everyday']
 }) {
     return (
