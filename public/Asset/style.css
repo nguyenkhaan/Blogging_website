@@ -95,3 +95,8 @@
   background: rgba(0, 0, 0, 0.3) !important;
   color: #fff !important;
 }
+.content {
+  min-height: 140px; 
+  width: 100%; 
+  margin: 0 auto; 
+}

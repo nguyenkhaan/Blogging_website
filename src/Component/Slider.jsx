@@ -20,16 +20,17 @@ export default function Slider({
     }, []);
 
     return (
-        <div className="overflow-hidden relative h-140">
+        <div className="overflow-hidden relative block">
             <div
-                className="flex transition-transform ease-out h-full duration-500"
+                className="flex transition-transform ease-out min-h-140 duration-500"
                 style={{ transform: `translateX(-${curr * 100}%)` }}
             >
                 {slides.map((img) => (
                    
                     <div
-                        className = "w-[1280px] flex-shrink-0 h-full bg-blue-600 bg-no-repeat bg-cover bg-center"
+                        className = "w-[1280px] flex-shrink-0 min-h-full bg-blue-600 bg-no-repeat bg-cover bg-center"
                         // style = {{backgroundImage: `url(${img})`}}
+                        
                     ></div>
                 ))}
             </div>
