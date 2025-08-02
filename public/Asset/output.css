@@ -1093,6 +1093,11 @@
       height: calc(var(--spacing) * 50);
     }
   }
+  .md\:h-60 {
+    @media (width >= 48rem) {
+      height: calc(var(--spacing) * 60);
+    }
+  }
   .md\:min-h-140 {
     @media (width >= 48rem) {
       min-height: calc(var(--spacing) * 140);
@@ -1306,6 +1311,11 @@
   .lg\:flex {
     @media (width >= 64rem) {
       display: flex;
+    }
+  }
+  .lg\:hidden {
+    @media (width >= 64rem) {
+      display: none;
     }
   }
   .lg\:h-20 {

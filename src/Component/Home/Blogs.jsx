@@ -24,7 +24,7 @@ function Blog({
     return (
         <div className={`${(middle || window.innerWidth <= 768) ? middleLineProps() : 'px-3'} w-full`}>
             <h2 className="font-light pb-4 mb-1 border-solid border-b-2 border-b-gray-800 text-2xl">Top Ranking Blogs</h2>
-            <div className="bg-gray-400 h-70 lg:h-70 w-full block"></div>
+            <div className="bg-gray-400 h-70 md:h-50 lg:h-70 w-full block"></div>
             <div className="blog__name block text-center font-sans py-3 font-light text-xl md:text-2xl">
                 {blogTitle}
             </div>

@@ -11,7 +11,7 @@ function Register() {
     return (
         <div className="w-full h-screen relative items-center justify-center flex">
             {/* Icon trở về trang chủ, hiện khi là điện thoại  */}
-            <Link to="/"> <FaHome className="absolute top-6 text-blue-900 cursor-pointer left-6 text-4xl block md:hidden " /> </Link>
+            <Link to="/"> <FaHome className="absolute top-6 text-blue-900 cursor-pointer left-6 text-4xl block lg:hidden " /> </Link>
             {/* Nửa bên trái - Background */}
             <div className="flex-1 h-full bg-no-repeat hidden bg-cover gap-6 bg-center bg-gradient-to-b from-blue-900 to-blue-950 lg:flex flex-col justify-center items-center">
                 <h1 className="md:text-3xl lg:text-5xl text-white font-bold">Hello Friends</h1>
