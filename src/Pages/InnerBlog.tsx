@@ -1,7 +1,7 @@
 import React from "react";
-import ContactBox from "../Component/ContactBox";
-import SideBar from "../Component/SideBar";
-import MailBox from "../Component/MailBox";
+import ContactBox from "../Component/InnerBlog/ContactBox";
+import SideBar from "../Component/InnerBlog/SideBar";
+import MailBox from "../Component/InnerBlog/MailBox";
 import Navbar from "../Component/Navbar";
 import Footer from "../Component/Footer";
 export default function InnerBlog() {
