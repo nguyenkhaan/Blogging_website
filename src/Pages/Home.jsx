@@ -42,10 +42,10 @@ function Home() {
             <div className="content">
                 <Slider slides={slides} />  
             </div>
-            <div className="content">
+            <div className="content ">
                 <TopBlog blogs = {topBlogData}/>
             </div>
-            <div className = "content bg-gray-200">
+            <div className = "content bg-gray-200 hidden lg:block">
                 <Section4 /> 
             </div>
             <div className = "content">
