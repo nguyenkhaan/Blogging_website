@@ -12,11 +12,11 @@ export default function UserDashboard() {
       <Navbar></Navbar>
       <main className="flex md:flex-row flex-col">
         <aside className="md:w-1/5 w-full">
-          <SideBar setCurrentBoard={setCurrentBoard}></SideBar>
+          <SideBar currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}></SideBar>
         </aside>
 
-        <section className="w-4/5 px-10">
-          {currentBoard == "PostsBoard" && <PostsBoard></PostsBoard>}
+        <section className="w-full md:w-4/5 md:px-10">
+          {currentBoard === "PostsBoard" && <PostsBoard></PostsBoard>}
         </section>
       </main>
       <Footer></Footer>

@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from "react";
 
-export default function SideBar({ setCurrentBoard }) {
+export default function SideBar({ currentBoard, setCurrentBoard }) {
   const [showSideBar, setShowSideBar] = useState(false);
 
   const boardList = [
     {
+      icon: <i class="fa-solid fa-file"></i>,
       title: "My Posts",
       boardName: "PostsBoard",
     },
     {
+      icon: <i class="fa-solid fa-feather"></i>,
       title: "Write new post",
       boardName: "BlogEditBoard",
     },
     {
+      icon: <i class="fa-solid fa-user"></i>,
       title: "Profile",
       boardName: "ProfileBoard",
     },
     {
+      icon: <i class="fa-solid fa-feather"></i>,
       title: "Setting",
       boardName: "SettingBoard",
     },
@@ -26,7 +30,14 @@ export default function SideBar({ setCurrentBoard }) {
     window.addEventListener("resize", () => {
       setShowSideBar(false);
     });
-  });
+
+    return () => window.removeEventListener('resize');
+  }, []);
+
+  useEffect(() => {
+    setShowSideBar(false);
+  }, [currentBoard])
+
 
   return (
     <nav
@@ -38,7 +49,7 @@ export default function SideBar({ setCurrentBoard }) {
         className=" cursor-pointer text-[20px] md:hidden h-[30px] w-[30px] absolute left-5"
       >
         <i
-          className={`fa-solid ${showSideBar ? "fa-x" : "fa-bars"}`}
+          className={`fa-solid ${showSideBar ? "fa-x" : "fa-bars"} text-blue-900`}
           onClick={() => setShowSideBar((s) => !s)}
         ></i>
       </button>
@@ -52,9 +63,11 @@ export default function SideBar({ setCurrentBoard }) {
           <button
             type="button"
             key={index}
-            className="w-full h-20 flex justify-center items-center cursor-pointer duration-100 font-[600] relative before:absolute before:right-0 before:h-full before:w-1 before:bg-[#193CB8] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:duration-100 hover:text-[20px]"
+            className={`w-full h-20 flex px-10 gap-2 items-center cursor-pointer duration-100 font-[600] relative before:absolute before:right-0 before:h-full before:w-1 before:bg-[#193CB8] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:duration-100 hover:text-[20px] ${currentBoard === board.boardName ? 'bg-[#193CB8] text-white' : ''}`}
             onClick={() => setCurrentBoard(board.boardName)}
+
           >
+            {board.icon}
             {board.title}
           </button>
         ))}
