@@ -17,8 +17,19 @@ const validationRules = {
             message: "Mật khẩu không được chứa ký tự đặc biệt ^ & * $ %"
         }
     },
+    Password_again: {
+        required: "Không được bỏ trống trường này",
+        minLength: {
+            value: 6,
+            message: "Mật khẩu phải có ít nhất 6 ký tự"
+        },
+        pattern: {
+            value: /^[^\s^&*$%]+$/, // ví dụ: không chứa ^ & * $ %
+            message: "Mật khẩu không được chứa ký tự đặc biệt ^ & * $ %"
+        }
+    },
     default: {
         required: "Không được bỏ trống trường này"
     }
 }
-export {validationRules}
+export { validationRules }

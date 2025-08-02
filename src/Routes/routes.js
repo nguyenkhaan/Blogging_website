@@ -2,6 +2,7 @@
 import Home from "../Pages/Home";
 import InnerBlog from "../Pages/InnerBlog"
 import Login from "../Pages/Login";
+import Register from "../Pages/Register";
 //Define public Routes 
 const publicRoutes = [
     {
@@ -18,6 +19,11 @@ const publicRoutes = [
         path: '/login',
         role: 'Login',
         element: Login
+    }, 
+    {
+        path: '/register', 
+        role: 'Register', 
+        element: Register
     }
 ]
 //Define private routes 

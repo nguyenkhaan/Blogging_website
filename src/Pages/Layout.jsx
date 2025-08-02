@@ -8,7 +8,7 @@ import { publicRoutes as router } from '../Routes/routes'
 import { useLocation } from 'react-router-dom'   //Su dung useLocation de lay address / path hien tai tren thanh url 
 function Layout() {
     const location = useLocation();
-    const hideElementUrls = ['/login']
+    const hideElementUrls = ['/login' , '/register']
     return (
         <>
             {!hideElementUrls.includes(location.pathname) && <Navbar />}

@@ -1,24 +1,9 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import LoginForm from '../Component/Login/LoginForm';
+import RegisterForm from '../Component/Register/RegisterForm';
 import { FaGooglePlusG, FaFacebook, FaGithub, FaHome } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-function Icon() {
-    return (
-        <div className="flex my-8 items-center justify-center gap-5 md:gap-8">
-            <div className="p-3.5 bg-white border-solid border-2 border-gray-300 rounded-full">
-                <FaGooglePlusG className='text-2xl md:text-3xl text-blue-950' />
-            </div>
-            <div className="p-4 bg-white rounded-full border-solid border-2 border-gray-300">
-                <FaFacebook className='text-2xl md:text-3xl text-blue-950' />
-            </div>
-            <div className="p-4 bg-white rounded-full border-solid border-2 border-gray-300">
-                <FaGithub className='text-2xl md:text-3xl text-blue-950' />
-            </div>
-        </div>
-    )
-}
-function Login() {
+function Register() {
     useEffect(() => {
         document.getElementById('root').classList.add("full-screen-page");
         return (() => document.getElementById('root').classList.remove('full-screen-page'));
@@ -36,12 +21,10 @@ function Login() {
 
             {/* Nửa bên phải - Form đăng nhập */}
             <div className="flex-2 h-full flex bg-gray-100 flex-col items-center justify-center">
-                <h1 className="text-5xl font-semibold text-blue-900 ">Sign In</h1>
-                <Icon />
-                <p className="text-gray-600 mb-4 md:mb-6">or use your account</p>
-                <LoginForm />
+                <h1 className="text-5xl font-semibold text-blue-900 mb-6 ">Sign up</h1>
+                <RegisterForm />
             </div>
         </div>
     );
 }
-export default Login
+export default Register

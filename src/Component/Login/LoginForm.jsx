@@ -3,41 +3,7 @@ import ReactDOM from 'react-dom'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
-import { ErrorMessage } from '@hookform/error-message'
-import { validationRules as rules } from '../Service/getValidationRules'  //Import rules cho từng trường 
-function Input({
-    placeholder = 'Enter',
-    name,
-    handleInput //handleInput chính là useForm được truyền vào để xử lí Form 
-}) {
-    //Truong nay khong duoc de trong, dung dinh dang gmail, 
-    const { register, errors, clearErrors } = handleInput;
-    const rule = rules[name] //Lấy ra rule tương ứng với name 
-    return (
-        <div className="flex justify-start items-start flex-col">
-            <label htmlFor={name} className="text-base text-gray-600 mb-2">{name}:</label>
-            <input
-                placeholder={placeholder}
-                className="text-gray-600 rounded-lg w-120 text-lg bg-gray-300 py-4 px-4 outline-0"
-                id={name}
-                type={(name == 'Password') ? `password` : `text`}
-                {...register(name, rule)}
-            // onChange={() => clearErrors(name)}
-            // onFocus={() => clearErrors(name)}   Tại vì xóa lỗi quá sớm nên không thể thấy được sự xuất hiện của lỗi 
-            >
-
-            </input>
-            {/**Thẻ hiển thị lỗi khi người dùng nhập giá trị không hợp lệ vào Input */}
-            <ErrorMessage
-                errors={errors}
-                name={name}
-                render={({ message }) => {
-                    return <p className="text-red-400 italic text-sm mt-1">*{message}*</p>
-                }}
-            />
-        </div>
-    )
-}
+import Input from '../Input'
 function LoginForm() {
     const [loginState, setLoginState] = useState(0);
     const navigate = useNavigate();
@@ -75,10 +41,14 @@ function LoginForm() {
                 handleInput={{ register, errors, clearErrors }}
             />
             {/**Chuyển đến trang đặt lại mật khẩu - sẽ code sau */}
-            <Link to="/"><span className="text-gray-600 underline text-xl mt-4">Forget your password? </span> </Link>
+            <Link to="/"><span className="text-blue-900 underline text-lg md:text-xl mt-4">Forget your password? </span> </Link>
+            <span className="text-gray-600 text-lg md:text-xl">
+                Chưa có tài khoản?
+                <Link to="/register"><span className="underline text-lg md:text-xl text-semibold mx-2 inline-block text-blue-900">Đăng kí ngay</span></Link>
+            </span>
             {/**Button submit form*/}
             <button type="submit" className="button-primary-des-2">Đăng Nhập</button>
-            <span className = "italic text-base">{(loginState == 0) ? '' : ((loginState == 1) ? '🥰 Đăng nhập thành công 🥰' : '😞 Đăng nhập thất bại 😞')}</span>
+            <span className={`italic text-base ${(loginState > 0) ? 'text-blue-900' : 'text-red-500'}`} >{(loginState == 0) ? '' : ((loginState == 1) ? '🥰 Đăng nhập thành công 🥰' : '😞 Đăng nhập thất bại 😞')}</span>
         </form>
     )
 }
