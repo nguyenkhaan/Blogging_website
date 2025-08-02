@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 function NavbarAbove() {
     return (
@@ -29,17 +30,16 @@ function NavbarBottomMenu() {
         <div className="flex-3 text-black relative">
             <i className="fa-solid fa-bars md:!hidden block"></i>
             <ul className="hidden p-0 absolute md:flex items-center md:justify-between gap-4 md:gap-7 md:relative">
-                <li>Home</li>
-                <li>Specials</li>
-                <li>About</li>
-                <li>Digest</li>
-                <li>Announcements</li>
+                <Link to = "/"><li>Home</li></Link>
+                <Link to = "/blog"><li>Blogs</li></Link>
+                <Link to = "/login"><li>Login</li></Link>
+                <Link to = "/"><li>Digest</li></Link>
+                <Link to = "/"><li>Announcements</li></Link>
             </ul>
         </div>
     )
 }
-function NavbarBottom() 
-{
+function NavbarBottom() {
     return (
         <div className=" text-lg w-full flex justify-between items-center md:justify-between h-20 md:h-24 px-4 md:px-12 ">
             <div className="flex-1 hidden md:flex justify-start">
@@ -57,7 +57,7 @@ function Navbar() {
     return (
         <div className="w-full static top-0 text-white text-base h-30 md:h-36">
             <NavbarAbove />
-            <NavbarBottom /> 
+            <NavbarBottom />
         </div>
 
     )

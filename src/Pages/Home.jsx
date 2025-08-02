@@ -38,7 +38,6 @@ function Home() {
     //1. navbar 2. Slider 3. Section 3 - Blogs 4. Section4  5. Section 5 - Form 
     return (
         <div className='w-full'>
-            <Navbar />
             <div className="content">
                 <Slider slides={slides} />  
             </div>
@@ -51,7 +50,6 @@ function Home() {
             <div className = "content">
                 <Form /> 
             </div>
-            <Footer /> 
         </div>
     )
 }

@@ -1,14 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Home from './Pages/Home'
-import InnerBlog from './Pages/InnerBlog'
-import Login from './Pages/Login'
+import Layout from './Pages/Layout'
 function App() {
     return (
         <div className='w-full relative'>
             {/* { <Home /> } */}
             {/* { <InnerBlog></InnerBlog> } */}
-            <Login /> 
+            {/* <Login />  */}
+            <Layout /> 
         </div>
     )
 }
