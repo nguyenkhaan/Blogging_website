@@ -6,7 +6,7 @@ function RelatedBlog({
 {
     return (
         <li className = "flex items-center justify-between  py-2 gap-3 w-full">
-            <div className = "lg:h-20 md:h-15 md:w-15 lg:w-20 bg-gray-600 flex-shrink-0"></div>
+            <div className = "lg:h-20 h-14 w-14 lg:w-20 bg-gray-600 flex-shrink-0"></div>
             <span className = "text-md font-sans block w-full text-left">{title}</span>
         </li>
     )
@@ -24,8 +24,8 @@ function Blog({
     return (
         <div className={`${(middle || window.innerWidth <= 768) ? middleLineProps() : 'px-3'} w-full`}>
             <h2 className="font-light pb-4 mb-1 border-solid border-b-2 border-b-gray-800 text-2xl">Top Ranking Blogs</h2>
-            <div className="bg-gray-400 md:h-50 lg:h-70 w-full block"></div>
-            <div className="blog__name block text-center font-sans py-2 text-lg font-light text-2xl">
+            <div className="bg-gray-400 h-70 lg:h-70 w-full block"></div>
+            <div className="blog__name block text-center font-sans py-3 font-light text-xl md:text-2xl">
                 {blogTitle}
             </div>
             <ul className = "min-h-40 md:divide-y divide-gray-300">
