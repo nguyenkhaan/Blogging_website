@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Home from './Pages/Home'
-function App()
-{
+import InnerBlog from './Pages/InnerBlog'
+function App() {
     return (
-        <div className='w-full relative'>
-            <Home /> 
+        <div className='w-full relative overflow-y-scroll'>
+            { <Home /> }
+            {/* { <InnerBlog></InnerBlog> } */}
         </div>
     )
 }
