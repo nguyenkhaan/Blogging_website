@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Slider from '../Component/Slider';
 import Navbar from '../Component/Navbar';
-import TopBlog from '../Component/Home/Section3/TopBlog';
-import Section4 from '../Component/Home/Section4/Section_4';
-import Form from '../Component/Home/Section5/Form';
+import TopBlog from '../Component/Home/TopBlog';
+import Section4 from '../Component/Home/Section_4';
+import Form from '../Component/Home/Form';
 import Footer from '../Component/Footer';
 const slides = [
     "http://localhost:5173/Image/background-slider-1.jpg",
