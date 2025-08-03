@@ -1,8 +1,9 @@
-//Define public Pages  
+//Define public Pages
 import Home from "../Pages/Home";
 import InnerBlog from "../Pages/InnerBlog"
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import UserDashboard from "../Pages/UserDashboard";
 //Define public Routes 
 const publicRoutes = [
     {
@@ -24,6 +25,11 @@ const publicRoutes = [
         path: '/register', 
         role: 'Register', 
         element: Register
+    },
+    {
+        path: '/dashboard', 
+        role: 'Dashboard', 
+        element: UserDashboard
     }
 ]
 //Define private routes 

@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { motion } from 'framer-motion';
 import Slider from '../Component/Slider';
-import Navbar from '../Component/Navbar';
 import TopBlog from '../Component/Home/TopBlog';
 import Section4 from '../Component/Home/Section_4';
 import Form from '../Component/Home/Form';
-import Footer from '../Component/Footer';
+import withTransition from '../Service/Transition';
 const slides = [
     "http://localhost:5173/Image/background-slider-1.jpg",
     "http://localhost:5173/Image/background-slider-2.jpg",
@@ -39,18 +39,28 @@ function Home() {
     return (
         <div className='w-full'>
             <div className="content">
-                <Slider slides={slides} />  
+                <Slider slides={slides} />
             </div>
             <div className="content ">
-                <TopBlog blogs = {topBlogData}/>
+                <TopBlog blogs={topBlogData} />
             </div>
-            <div className = "content bg-gray-200 hidden lg:block">
-                <Section4 /> 
-            </div>
-            <div className = "content">
-                <Form /> 
-            </div>
+            <motion.div
+                className="content bg-gray-200 hidden lg:block"
+                initial={{ opacity: 0, x: '-100%' }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+            >
+                <Section4 />
+            </motion.div>
+            <motion.div
+                className="content"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+            >
+                <Form />
+            </motion.div>
         </div>
     )
 }
-export default Home
+export default withTransition(Home); 
