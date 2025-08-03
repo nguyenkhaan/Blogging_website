@@ -19,8 +19,8 @@ function Scroll()
             style = {{
                 scaleX: springScrollYProgess, 
                 transformOrigin: '0%', 
-                height: 6,
-                zIndex: 9999 
+                height: 4,
+                zIndex: 99999 //9*10^5 sẽ đại diện cho một giá trị rất lớn 
             }}
         >
 
