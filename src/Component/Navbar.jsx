@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
+import HorizontalStyle from './HorizontalStyle'
 function NavbarAbove() {
     return (
         <div>
@@ -25,41 +26,15 @@ function NavbarAbove() {
         </div>
     )
 }
-function NavbarBottomMenu() {
-    return (
-        <div className="flex-3 text-black relative">
-            <i className="fa-solid fa-bars md:!hidden block"></i>
-            <ul className="hidden p-0 absolute md:flex items-center md:justify-between gap-4 md:gap-7 md:relative">
-                <Link to = "/"><li>Home</li></Link>
-                <Link to = "/blog"><li>Blogs</li></Link>
-                <Link to = "/login"><li>Login</li></Link>
-                <Link to = "/"><li>Digest</li></Link>
-                <Link to = "/"><li>Announcements</li></Link>
-            </ul>
-        </div>
-    )
-}
-function NavbarBottom() {
-    return (
-        <div className=" text-lg w-full flex justify-between items-center md:justify-between h-20 md:h-24 px-4 md:px-12 ">
-            <div className="flex-1 hidden md:flex justify-start">
-                <Logo path="Image/Logo.png" />
-            </div>
-            <NavbarBottomMenu />
-            <div className="flex-1 text-black flex justify-end">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-        </div>
-
-    )
-}
 function Navbar() {
     return (
         <div className="w-full static top-0 text-white text-base h-30 md:h-36">
             <NavbarAbove />
-            <NavbarBottom />
+            <div className = "w-full h-20 md:h-24">
+                <HorizontalStyle />
+            </div>
         </div>
-
+/**Phai ho tro them bang Framer Motion de tao ra the div Doc  */
     )
 }
 export default Navbar
