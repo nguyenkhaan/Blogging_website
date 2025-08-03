@@ -1,15 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Home from './Pages/Home'
-import InnerBlog from './Pages/InnerBlog'
-import UserDashboard from './Pages/UserDashboard'
-import { User } from 'react-feather'
+import Layout from './Pages/Layout'
 function App() {
     return (
-        <div className='w-full relative overflow-y-scroll'>
+        <div className='w-full relative'>
             {/* { <Home /> } */}
-            {/* {<InnerBlog></InnerBlog>} */}
-            <UserDashboard></UserDashboard>
+            {/* { <InnerBlog></InnerBlog> } */}
+            {/* <Login />  */}
+            <Layout />
         </div>
     )
 }

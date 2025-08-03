@@ -22,7 +22,7 @@ export default function Slider({
     return (
         <div className="overflow-hidden relative block">
             <div
-                className="flex transition-transform ease-out min-h-140 duration-500"
+                className="flex transition-transform ease-out min-h-100 md:min-h-140 duration-500"
                 style={{ transform: `translateX(-${curr * 100}%)` }}
             >
                 {slides.map((img) => (
@@ -39,13 +39,13 @@ export default function Slider({
                     onClick={prev}
                     className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
                 >
-                    <ChevronLeft size={40} />
+                    <ChevronLeft size={36} />
                 </button>
                 <button
                     onClick={next}
                     className="p-1 rounded-full shadow bg-white/80 text-gray-800 hover:bg-white"
                 >
-                    <ChevronRight size={40} />
+                    <ChevronRight size={36} />
                 </button>
             </div>
 

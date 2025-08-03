@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Navbar from "../Component/Navbar";
+// import Navbar from "../Component/Navbar";
 import SideBar from "../Component/UserDashboard/SideBar";
-import Footer from "../Component/Footer";
+// import Footer from "../Component/Footer";
 import PostsBoard from "../Component/UserDashboard/PostsBoard";
 
 export default function UserDashboard() {
@@ -9,7 +9,7 @@ export default function UserDashboard() {
 
   return (
     <div className="flex flex-col">
-      <Navbar></Navbar>
+      {/* <Navbar></Navbar> */}
       <main className="flex md:flex-row flex-col">
         <aside className="md:w-1/5 w-full">
           <SideBar currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}></SideBar>
@@ -19,7 +19,7 @@ export default function UserDashboard() {
           {currentBoard === "PostsBoard" && <PostsBoard></PostsBoard>}
         </section>
       </main>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </div>
   );
 }

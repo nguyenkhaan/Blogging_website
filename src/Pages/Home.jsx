@@ -38,20 +38,18 @@ function Home() {
     //1. navbar 2. Slider 3. Section 3 - Blogs 4. Section4  5. Section 5 - Form 
     return (
         <div className='w-full'>
-            <Navbar />
             <div className="content">
                 <Slider slides={slides} />  
             </div>
-            <div className="content">
+            <div className="content ">
                 <TopBlog blogs = {topBlogData}/>
             </div>
-            <div className = "content bg-gray-200">
+            <div className = "content bg-gray-200 hidden lg:block">
                 <Section4 /> 
             </div>
             <div className = "content">
                 <Form /> 
             </div>
-            <Footer /> 
         </div>
     )
 }

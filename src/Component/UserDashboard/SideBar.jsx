@@ -25,13 +25,18 @@ export default function SideBar({ currentBoard, setCurrentBoard }) {
       boardName: "SettingBoard",
     },
   ];
-
   useEffect(() => {
-    window.addEventListener("resize", () => {
+    const handleResize = () => {
       setShowSideBar(false);
-    });
+    };
 
-    return () => window.removeEventListener('resize');
+    // Thêm event listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup: gỡ listener khi component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   useEffect(() => {
