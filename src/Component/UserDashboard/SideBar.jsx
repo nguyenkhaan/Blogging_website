@@ -5,22 +5,22 @@ export default function SideBar({ currentBoard, setCurrentBoard }) {
 
   const boardList = [
     {
-      icon: <i class="fa-solid fa-file"></i>,
+      icon: <i className="fa-solid fa-file"></i>,
       title: "My Posts",
       boardName: "PostsBoard",
     },
     {
-      icon: <i class="fa-solid fa-feather"></i>,
+      icon: <i className="fa-solid fa-feather"></i>,
       title: "Write new post",
       boardName: "BlogEditBoard",
     },
     {
-      icon: <i class="fa-solid fa-user"></i>,
+      icon: <i className="fa-solid fa-user"></i>,
       title: "Profile",
       boardName: "ProfileBoard",
     },
     {
-      icon: <i class="fa-solid fa-feather"></i>,
+      icon: <i className="fa-solid fa-feather"></i>,
       title: "Setting",
       boardName: "SettingBoard",
     },

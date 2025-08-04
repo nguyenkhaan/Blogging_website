@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import SideBar from "../Component/UserDashboard/SideBar";
 // import Footer from "../Component/Footer";
 import PostsBoard from "../Component/UserDashboard/PostsBoard";
+import BlogEditBoard from "../Component/UserDashboard/BlogEditBoard";
 
 export default function UserDashboard() {
-  const [currentBoard, setCurrentBoard] = useState("PostsBoard");
+  const [currentBoard, setCurrentBoard] = useState("BlogEditBoard");
 
   return (
     <div className="flex flex-col">
-      {/* <Navbar></Navbar> */}
       <main className="flex md:flex-row flex-col">
         <aside className="md:w-1/5 w-full">
           <SideBar currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}></SideBar>
@@ -17,9 +17,9 @@ export default function UserDashboard() {
 
         <section className="w-full md:w-4/5 md:px-10">
           {currentBoard === "PostsBoard" && <PostsBoard></PostsBoard>}
+          {currentBoard === "BlogEditBoard" && <BlogEditBoard></BlogEditBoard>}
         </section>
       </main>
-      {/* <Footer></Footer> */}
     </div>
   );
 }

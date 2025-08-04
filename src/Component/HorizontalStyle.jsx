@@ -12,11 +12,11 @@ function HorizontalStyle() {
             <div className="flex-3 text-black relative">
                 <i className="fa-solid fa-bars md:!hidden block"></i>
                 <ul className="hidden p-0 absolute md:flex items-center md:justify-between gap-4 md:gap-7 md:relative">
-                    <MenuList /> 
+                    <MenuList />
                 </ul>
             </div>
             <div className="flex-1 text-black flex justify-end">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i className="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
 

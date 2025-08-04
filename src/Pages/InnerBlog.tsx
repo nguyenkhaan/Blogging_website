@@ -2,13 +2,9 @@ import React from "react";
 import ContactBox from "../Component/InnerBlog/ContactBox";
 import SideBar from "../Component/InnerBlog/SideBar";
 import MailBox from "../Component/InnerBlog/MailBox";
-import Navbar from "../Component/Navbar";
-import Footer from "../Component/Footer";
 export default function InnerBlog() {
   return (
     <div className="w-full bg-[#F2F5F8] ">
-      {/* { <Navbar></Navbar> } */}
-      {<Navbar></Navbar>}
       <main className="w-full grid grid-cols-16 ">
         <figure className="flex justify-center items-center overflow-hidden max-h-70 col-span-16 relative">
           <img src="/Image/background-slider-1.jpg" alt="banner-pic" />
@@ -146,8 +142,6 @@ export default function InnerBlog() {
           <ContactBox></ContactBox>
         </section>
       </main>
-      {/* <Footer />  */}
-      <Footer />
     </div>
   );
 }

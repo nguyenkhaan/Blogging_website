@@ -89,7 +89,7 @@ export default function PostsBoard() {
 
   useEffect(() => {
     setPostDisplayCount(Math.min(postData.length, 5));
-  }, [])
+  }, [postData.length])
 
   return <section className="w-full h-full bg-white md:shadow-xl/30 rounded-[5px] p-10 flex flex-col gap-10">
     <div className='flex justify-between items-center flex-col sm:flex-row gap-5'>

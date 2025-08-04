@@ -1,15 +1,14 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Logo from './Logo'
 function Footer() {
     return (
         <div className="w-full static bottom-0 text-base text-black h-46">
             <div className="flex h-24  items-center justify-center md:justify-between">
                 <div className="flex-1 flex items-center gap-4 md:gap-2 md:text-black text-5xl md:text-base justify-center md:justify-start">
-                    <i class="fa-brands fa-facebook text-blue-800"></i>
-                    <i class="fa-brands fa-square-instagram text-red-700"></i>
-                    <i class="fa-brands fa-square-twitter text-blue-500"></i>
-                    <i class="fa-brands fa-square-x-twitter text-black"></i>
+                    <i className="fa-brands fa-facebook text-blue-800"></i>
+                    <i className="fa-brands fa-square-instagram text-red-700"></i>
+                    <i className="fa-brands fa-square-twitter text-blue-500"></i>
+                    <i className="fa-brands fa-square-x-twitter text-black"></i>
                 </div>
                 <Logo />
                 <div className="flex-1 hidden text-black items-center md:flex justify-end">
