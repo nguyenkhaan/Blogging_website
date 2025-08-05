@@ -1,7 +1,7 @@
 //Một card Blogs 
 import React from 'react'
 import ReactDOM from 'react-dom'
-function Blog({title , content , stars = 5}) {
+function Blog({userBlog}) {
     return (
         <div className="col-span-4 flex flex-col h-128 overflow-hidden 
     bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
@@ -12,17 +12,10 @@ function Blog({title , content , stars = 5}) {
             {/* Nội dung */}
             <div className="w-full py-5 max-h-62">
                 <h3 className="font-light text-lg text-blue-900 break-all px-3 line-clamp-2">
-                    Lorem ispum dolor Dummy Text of The Printing and Typescripting Typescripting...
+                    {userBlog.title}
                 </h3>
                 <div className="w-full text-sm mt-3 leading-[22px] px-3 text-gray-800 font-light line-clamp-7 h-38">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry 
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry 
+                    {userBlog.content}
                 </div>
             </div>
 
@@ -33,7 +26,7 @@ function Blog({title , content , stars = 5}) {
                 </button>
                 <div className="py-2.5 px-2 cursor-pointer text-xs flex items-center justify-center font-semibold text-gray-300">
                     {Array(5).fill(0).map((curr , index) => {
-                        return <i className= {`fa-solid fa-star ${(index < stars)? 'text-yellow-400' : ''}`} ></i>
+                        return <i className= {`fa-solid fa-star ${(index < Number(userBlog.stars))? 'text-yellow-400' : ''}`} ></i>
                     })}
                 </div>
             </div>
