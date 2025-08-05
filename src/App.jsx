@@ -1,30 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Layout from './Pages/Layout'
-import Profile from './Pages/Profile'
-import Navbar from './Component/Navbar'
-import Footer from './Component/Footer'
-import UserDashboard from './Pages/UserDashboard'
+import Scroll from './Component/Scroll'
 import { Routes, Route } from 'react-router-dom'
-import { publicRoutes } from './Routes/routes'
+import { publicRoutes } from './Routes/routes.jsx'
 
 function App() {
     return (
         <div className='w-full relative'>
-            <Navbar />
-            {/* { <Home /> } */}
-            {/* { <InnerBlog></InnerBlog> } */}
-            {/* <Login />  */}
-            {/* <Layout />  */}
-            <div className="content">
-                {/* <UserDashboard /> */}
-                <Routes>
-                    {publicRoutes.map((route, index) => (
-                        <Route key={index} path={route.path} element={<route.element />} />
-                    ))}
-                </Routes>
-            </div>
-            <Footer />
+            <Scroll />
+            <Routes>
+                {publicRoutes.map(({ path, role, element }, index) => {
+                    return <Route key={index} path={path} element={element}></Route>
+                })}
+            </Routes>
         </div>
     )
 }
