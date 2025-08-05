@@ -21,19 +21,19 @@ function Profile() {
     const [userBlogs, setUserBlogs] = useState([]);
     const [currItems, setCurrItems] = useState([]); //Cac phan tu hien tai 
     const [page, setPage] = useState(1);   //Trang dau tien 
-    const handlePageClick = ({selected}) => {
-        setPage(selected + 1); 
+    const handlePageClick = ({ selected }) => {
+        setPage(selected + 1);
     }
     useEffect(() => { //FAKE CALL API de goi userBlogs, no bi faile o lan goi dau tein truoc khi render 
-        setUserBlogs(getUserBlogs(1));   
+        setUserBlogs(getUserBlogs(1));
     }, [])
     useEffect(() => {  //Chay lan dua tien khi component duoc mount nen dan toi bi fail 
         setTotalPages(Math.ceil(userBlogs.length / 9))
         setCurrItems(userBlogs.slice(1, 10));
     }, [userBlogs])
     useEffect(() => {
-        setCurrItems(userBlogs.slice(9 * (page - 1) , 9*(page - 1) + 9)); 
-    } , [page])
+        setCurrItems(userBlogs.slice(9 * (page - 1), 9 * (page - 1) + 9));
+    }, [page])
     return (
         <div className="w-full grid min-h-screen grid-cols-16 gap-8 grid-rows-1">
             <Personal personalInformation={personalInformation} />
