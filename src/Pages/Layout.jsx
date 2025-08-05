@@ -2,15 +2,17 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Routes, Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import Navbar from '../Component/Navbar'
-import Footer from '../Component/Footer'
 import { publicRoutes as router } from '../Routes/routes'
 import { useLocation } from 'react-router-dom'   //Su dung useLocation de lay address / path hien tai tren thanh url 
+import Navbar from '../Component/Navbar'
+import Footer from '../Component/Footer'
+import Scroll from '../Component/Scroll'
 function Layout() {
     const location = useLocation();
-    const hideElementUrls = ['/login' , '/register']
+    const hideElementUrls = ['/login', '/register']
     return (
         <>
+            <Scroll />
             {!hideElementUrls.includes(location.pathname) && <Navbar />}
             <Routes>
                 {router.map(({ path, role, element }) => {

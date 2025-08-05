@@ -5,7 +5,7 @@ import MenuList from './MenuList'
 import Logo from './Logo'
 function HorizontalStyle() {
     return (
-        <div className=" text-lg w-full flex justify-between items-center md:justify-between h-20 md:h-24 px-4 md:px-12 ">
+        <div className=" text-lg w-full hidden md:flex justify-between items-center md:justify-between h-20 md:h-24 px-4 md:px-12 ">
             <div className="flex-1 hidden md:flex justify-start">
                 <Logo path="Image/Logo.png" />
             </div>
