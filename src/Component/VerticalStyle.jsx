@@ -26,11 +26,9 @@ function VerticalStyle() {
                     >
                         <MenuList />
                     </motion.ul>
-
-
                 }
             </AnimatePresence>
-            <div className="flex-1 text-white flex justify-end">
+            <div className="flex-1 text-white flex pr-2 justify-end">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
