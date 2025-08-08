@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { useState } from 'react'
-function Personal({ personalInformation }) 
-{
+function Personal({ personalInformation }) {
     const [avatar, setAvatar] = useState('/Image/default-avatar.jpg')
     const handlePreviewAvatar = (e) => {
         const file = e.target.files[0];
@@ -15,12 +14,15 @@ function Personal({ personalInformation })
         }
     }, [avatar])
     return (
-        <div className="col-span-4 w-full min-h-80 flex flex-col justify-start px-8 py-10 items-center">
-            <div
-                className="flex rounded-full justify-center items-center w-56 h-56 bg-cover bg-center"
-                style={{ backgroundImage: `url(${avatar})` }}
-            >
-                <input type="file" className="block opacity-0 cursor-pointer rounded-full w-60 h-60" onChange={handlePreviewAvatar} />
+        <div className="2xl:col-span-4 col-span-16 w-screen 2xl:w-full min-h-80 flex flex-col 2xl:block justify-center px-8 py-10 items-center">
+            <div className = "w-full flex justify-center items-center">
+                <div
+                    className="flex rounded-full justify-center items-center w-56 h-56 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${avatar})` }}
+                >
+                    <input type="file" className="block opacity-0 cursor-pointer rounded-full w-60 h-60" onChange={handlePreviewAvatar} />
+                </div>
+
             </div>
             <div className="w-full mt-6">
                 <h2 className="text-2xl font-semibold break-all">{personalInformation.name}</h2>

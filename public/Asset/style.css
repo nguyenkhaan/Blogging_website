@@ -145,3 +145,29 @@
 .button-primary-des-1:hover {
   opacity: 0.8; 
 }
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+@keyframes slideInLeft {
+  from {
+    transform: translateX(100%); 
+  } 
+  to {
+    transform: translateX(0); 
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1; 
+  } 
+  to {
+    opacity: 0; 
+  }
+}
