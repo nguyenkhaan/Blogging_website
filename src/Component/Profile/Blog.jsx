@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 function Blog({userBlog}) {
     return (
-        <div className="col-span-4 flex flex-col h-128 overflow-hidden 
+        <div className="2xl:col-span-4 md:col-span-6 col-span-6 flex flex-col h-128 overflow-hidden 
     bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg">
 
             {/* Ảnh */}

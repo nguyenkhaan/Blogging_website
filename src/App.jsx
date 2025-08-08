@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Scroll from './Component/Scroll'
 import { Routes, Route } from 'react-router-dom'
 import { publicRoutes } from './Routes/routes.jsx'
-
+import Profile from './Pages/Profile.jsx'
 function App() {
     return (
         <div className='w-full relative'>

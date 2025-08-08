@@ -37,14 +37,14 @@ function Profile() {
     return (
         <div className="w-full grid min-h-screen grid-cols-16 gap-8 grid-rows-1">
             <Personal personalInformation={personalInformation} />
-            <div className="col-span-12 min-h-80">
-                <div className="py-8">
+            <div className="col-span-16 2xl:col-span-12 items-center min-h-80">
+                <div className="hidden 2xl:block py-8">
                     <Frequency />
                 </div>
-                <div className="py-4">
+                <div className="py-4 max-xl:w-screen px-6 2xl:px-0 max-w-[1280px]">
                     <Blogs userBlogs={currItems} />
                 </div>
-                <div>
+                <div className = "w-screen max-w-[1280px] 2xl:w-full flex items-center justify-center mt-4">
                     <ReactPaginate
                         nextLabel="Next"
                         onPageChange={handlePageClick}   //Khi click vao cac chuyen trang Button se goi ham nay voi tham so selected dai dien cho so trang vua moi bam 
@@ -52,13 +52,13 @@ function Profile() {
                         marginPagesDisplayed={2}
                         pageCount={totalPages}  //Tong so trang muon hien thi 
                         previousLabel='Previous'   //Nut previus
-                        pageLinkClassName="p-4 border border-gray-300 cursor-pointer justify-center flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
+                        pageLinkClassName="2xl:p-4 p-2 border border-gray-300 cursor-pointer justify-center flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
                         //class Cho cac button chuyen trang co danh so 
                         // previousClassName="page-item"
-                        previousLinkClassName="p-4 border border-gray-300 cursor-pointer justify-center flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
+                        previousLinkClassName="p-4 p-2 border border-gray-300 cursor-pointer justify-center flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
                         //class cho cac button chuyen trang Previous < 
                         // nextClassName="page-item"
-                        nextLinkClassName="p-4 border border-gray-300 justify-center cursor-pointer flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
+                        nextLinkClassName="2xl:p-4 p-2 border border-gray-300 justify-center cursor-pointer flex items-center flex-shrink-0 min-w-6 h-7 rounded hover:bg-gray-200 transition"
                         //Class cho cac button chuyen trang Next > 
                         breakLabel="..."
                         breakClassName="page-item"
