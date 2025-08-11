@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
 import TextEditorBox from './TextEditorBox'
-
+import { sendBlog } from "../../Feature/sendBlog";
 
 export default function BlogEditBoard() {
     const [bannerPreview, setBannerPreview] = useState(null);
@@ -34,8 +34,9 @@ export default function BlogEditBoard() {
             ...data,
             content: finalContent
         };
-
-        console.log('Submitting blog post:', submissionData);
+        
+        console.log('Submitting blog post:', submissionData);  //Du lieu nhan duoc chinh la submissionData 
+        sendBlog(submissionData) //Gui du lieu ve server 
 
     }
 

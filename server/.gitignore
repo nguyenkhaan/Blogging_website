@@ -1,2 +1,6 @@
 /node_modules
 /note.md
+
+/src/generated/prisma
+
+/uploads

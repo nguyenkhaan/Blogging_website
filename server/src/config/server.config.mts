@@ -1,11 +1,29 @@
-import express from 'express' 
-import type { Application } from 'express'   
-//Khi su dung mts, thi Apllication se la type, bi bo qua va bao khong tim thay. De co the import, ta dung cu phap import type 
-function serverConfig(server : Application) 
-{
-    server.use(express.static('./public'))
-    server.use(express.json()); 
-    server.use(express.urlencoded({extended: false}))
+import express from 'express'
+import type { Application } from 'express'  //Phai import type thi no moi khong bi loi 
+import multer from 'multer'
+import path from 'path'
+const __dirname = path.resolve() 
+function jsonConfig(app: Application) {
+    app.use(express.json())
 }
+function urlEncodedConfig(app: Application) {
+    app.use(express.urlencoded({ extended: true }))
+}
+function multerConfig() {
+    var storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, path.join(__dirname , '../server/uploads'))
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now()) //Dinh dang ten file 
+        }
+    })
 
-export {serverConfig}
+    var upload = multer({ storage: storage })
+    return upload
+}
+function staticFileConfig(app:Application) 
+{
+    app.use(express.static('./public'))
+}
+export {jsonConfig , urlEncodedConfig , multerConfig , staticFileConfig}

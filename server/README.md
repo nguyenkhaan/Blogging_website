@@ -39,3 +39,33 @@ flowchart LR
     E --> C
     C --> A
 ```
+
+## 3. Hướng dẫn kết nối CSDL - ORM 
+- Đường link cho db chạy ở localhost (.env) `type_db://user:pwd@localhost:port/db`
+
+*Ví dụ*: mongodb://cloudian:powerful@localhost:3306/BLOG
+#### 3.1. Prisma mongodb 
+B1. Dowload Prisma và cài đặt Prisma tại đường link: 
+
+Mặc định Prisma sẽ chạy ở port `27017` 
+
+B2. Tạo mới 1 user trong mongodb ở collection admin 
+
+>admin: **db.getUsers():** Lấy danh sách tất cả người dùng 
+
+>admin: **db.auth("username" , "pwd")**: Xác thực một người dùng 
+
+>admin: **db.createUsert({user: "name" , pwd: "password" , roles: [role: 'root' , db:'admin']})**: Cấp quyền cao nhất cho user mới khởi tạo 
+
+B3. Sử dụng file được cung cấp để tạo dữ liệu mẫu và .env
+
+B4. Tại thư mục prisma/mongodb. Chạy lệnh `npx prisma db push` để đồng bộ hóa giữa schema và db 
+
+#### 3.2. Prisma mysql 
+B1. Dowload mysql và cài đặt tại đường link 
+
+Mặc định mysql sẽ chạy ở port 3306 
+
+B2. Sử dụng file được cung cấp để tạo dữ liệu mẫu và .env 
+
+B3. Tại thư mục prisma/mysql. Chạy lệnh `npx prisma migrate dev` để đồng bộ giữa schema và db

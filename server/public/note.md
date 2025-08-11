@@ -1,1 +1,0 @@
-Day la noi chua cac file public 
