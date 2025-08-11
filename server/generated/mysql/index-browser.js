@@ -140,6 +140,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 exports.Prisma.BlogsOrderByRelevanceFieldEnum = {
   blogID: 'blogID',
   title: 'title',

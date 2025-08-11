@@ -862,6 +862,7 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     userID: string | null
+    avatar: string | null
     name: string | null
     username: string | null
     password: string | null
@@ -872,6 +873,7 @@ export namespace Prisma {
 
   export type UserMaxAggregateOutputType = {
     userID: string | null
+    avatar: string | null
     name: string | null
     username: string | null
     password: string | null
@@ -882,6 +884,7 @@ export namespace Prisma {
 
   export type UserCountAggregateOutputType = {
     userID: number
+    avatar: number
     name: number
     username: number
     password: number
@@ -908,6 +911,7 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     userID?: true
+    avatar?: true
     name?: true
     username?: true
     password?: true
@@ -918,6 +922,7 @@ export namespace Prisma {
 
   export type UserMaxAggregateInputType = {
     userID?: true
+    avatar?: true
     name?: true
     username?: true
     password?: true
@@ -928,6 +933,7 @@ export namespace Prisma {
 
   export type UserCountAggregateInputType = {
     userID?: true
+    avatar?: true
     name?: true
     username?: true
     password?: true
@@ -1027,6 +1033,7 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     userID: string
+    avatar: string | null
     name: string
     username: string
     password: string
@@ -1058,6 +1065,7 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     userID?: boolean
+    avatar?: boolean
     name?: boolean
     username?: boolean
     password?: boolean
@@ -1072,6 +1080,7 @@ export namespace Prisma {
 
   export type UserSelectScalar = {
     userID?: boolean
+    avatar?: boolean
     name?: boolean
     username?: boolean
     password?: boolean
@@ -1082,13 +1091,14 @@ export namespace Prisma {
     activities?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userID" | "name" | "username" | "password" | "follows" | "subscribers" | "blogs" | "famous" | "activities", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userID" | "avatar" | "name" | "username" | "password" | "follows" | "subscribers" | "blogs" | "famous" | "activities", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
       userID: string
+      avatar: string | null
       name: string
       username: string
       password: string
@@ -1490,6 +1500,7 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly userID: FieldRef<"User", 'String'>
+    readonly avatar: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
     readonly username: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
@@ -1852,6 +1863,7 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     userID: 'userID',
+    avatar: 'avatar',
     name: 'name',
     username: 'username',
     password: 'password',
@@ -1950,6 +1962,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     userID?: StringFilter<"User"> | string
+    avatar?: StringNullableFilter<"User"> | string | null
     name?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
@@ -1962,6 +1975,7 @@ export namespace Prisma {
 
   export type UserOrderByWithRelationInput = {
     userID?: SortOrder
+    avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
@@ -1977,6 +1991,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
+    avatar?: StringNullableFilter<"User"> | string | null
     name?: StringFilter<"User"> | string
     username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
@@ -1989,6 +2004,7 @@ export namespace Prisma {
 
   export type UserOrderByWithAggregationInput = {
     userID?: SortOrder
+    avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
@@ -2009,6 +2025,7 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     userID?: StringWithAggregatesFilter<"User"> | string
+    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     name?: StringWithAggregatesFilter<"User"> | string
     username?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
@@ -2021,6 +2038,7 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     userID: string
+    avatar?: string | null
     name: string
     username: string
     password: string
@@ -2033,6 +2051,7 @@ export namespace Prisma {
 
   export type UserUncheckedCreateInput = {
     userID: string
+    avatar?: string | null
     name: string
     username: string
     password: string
@@ -2044,6 +2063,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateInput = {
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -2055,6 +2075,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateInput = {
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -2067,6 +2088,7 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     userID: string
+    avatar?: string | null
     name: string
     username: string
     password: string
@@ -2078,6 +2100,7 @@ export namespace Prisma {
   }
 
   export type UserUpdateManyMutationInput = {
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -2089,6 +2112,7 @@ export namespace Prisma {
   }
 
   export type UserUncheckedUpdateManyInput = {
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -2112,6 +2136,22 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    isSet?: boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2154,6 +2194,7 @@ export namespace Prisma {
 
   export type UserCountOrderByAggregateInput = {
     userID?: SortOrder
+    avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
@@ -2172,6 +2213,7 @@ export namespace Prisma {
 
   export type UserMaxOrderByAggregateInput = {
     userID?: SortOrder
+    avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
@@ -2182,6 +2224,7 @@ export namespace Prisma {
 
   export type UserMinOrderByAggregateInput = {
     userID?: SortOrder
+    avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
     password?: SortOrder
@@ -2212,6 +2255,25 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+    isSet?: boolean
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2252,6 +2314,11 @@ export namespace Prisma {
 
   export type UserCreateactivitiesInput = {
     set: Date[] | string[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+    unset?: boolean
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -2298,6 +2365,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    isSet?: boolean
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -2335,6 +2417,36 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    isSet?: boolean
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {

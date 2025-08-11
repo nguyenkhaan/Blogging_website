@@ -1141,7 +1141,7 @@ export namespace Prisma {
   export type BlogsGroupByOutputType = {
     blogID: string
     title: string
-    banner: string
+    banner: string | null
     content: string
     score: number
     views: number
@@ -1203,7 +1203,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       blogID: string
       title: string
-      banner: string
+      banner: string | null
       content: string
       score: number
       views: number
@@ -2904,6 +2904,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   export const BlogsOrderByRelevanceFieldEnum: {
     blogID: 'blogID',
     title: 'title',
@@ -2958,7 +2966,7 @@ export namespace Prisma {
     NOT?: BlogsWhereInput | BlogsWhereInput[]
     blogID?: StringFilter<"Blogs"> | string
     title?: StringFilter<"Blogs"> | string
-    banner?: StringFilter<"Blogs"> | string
+    banner?: StringNullableFilter<"Blogs"> | string | null
     content?: StringFilter<"Blogs"> | string
     score?: IntFilter<"Blogs"> | number
     views?: IntFilter<"Blogs"> | number
@@ -2969,7 +2977,7 @@ export namespace Prisma {
   export type BlogsOrderByWithRelationInput = {
     blogID?: SortOrder
     title?: SortOrder
-    banner?: SortOrder
+    banner?: SortOrderInput | SortOrder
     content?: SortOrder
     score?: SortOrder
     views?: SortOrder
@@ -2984,7 +2992,7 @@ export namespace Prisma {
     OR?: BlogsWhereInput[]
     NOT?: BlogsWhereInput | BlogsWhereInput[]
     title?: StringFilter<"Blogs"> | string
-    banner?: StringFilter<"Blogs"> | string
+    banner?: StringNullableFilter<"Blogs"> | string | null
     content?: StringFilter<"Blogs"> | string
     score?: IntFilter<"Blogs"> | number
     views?: IntFilter<"Blogs"> | number
@@ -2995,7 +3003,7 @@ export namespace Prisma {
   export type BlogsOrderByWithAggregationInput = {
     blogID?: SortOrder
     title?: SortOrder
-    banner?: SortOrder
+    banner?: SortOrderInput | SortOrder
     content?: SortOrder
     score?: SortOrder
     views?: SortOrder
@@ -3013,7 +3021,7 @@ export namespace Prisma {
     NOT?: BlogsScalarWhereWithAggregatesInput | BlogsScalarWhereWithAggregatesInput[]
     blogID?: StringWithAggregatesFilter<"Blogs"> | string
     title?: StringWithAggregatesFilter<"Blogs"> | string
-    banner?: StringWithAggregatesFilter<"Blogs"> | string
+    banner?: StringNullableWithAggregatesFilter<"Blogs"> | string | null
     content?: StringWithAggregatesFilter<"Blogs"> | string
     score?: IntWithAggregatesFilter<"Blogs"> | number
     views?: IntWithAggregatesFilter<"Blogs"> | number
@@ -3064,7 +3072,7 @@ export namespace Prisma {
   export type BlogsCreateInput = {
     blogID: string
     title: string
-    banner: string
+    banner?: string | null
     content: string
     score: number
     views: number
@@ -3075,7 +3083,7 @@ export namespace Prisma {
   export type BlogsUncheckedCreateInput = {
     blogID: string
     title: string
-    banner: string
+    banner?: string | null
     content: string
     score: number
     views: number
@@ -3086,7 +3094,7 @@ export namespace Prisma {
   export type BlogsUpdateInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
@@ -3097,7 +3105,7 @@ export namespace Prisma {
   export type BlogsUncheckedUpdateInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
@@ -3108,7 +3116,7 @@ export namespace Prisma {
   export type BlogsCreateManyInput = {
     blogID: string
     title: string
-    banner: string
+    banner?: string | null
     content: string
     score: number
     views: number
@@ -3118,7 +3126,7 @@ export namespace Prisma {
   export type BlogsUpdateManyMutationInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
@@ -3128,7 +3136,7 @@ export namespace Prisma {
   export type BlogsUncheckedUpdateManyInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
@@ -3184,6 +3192,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -3198,6 +3221,11 @@ export namespace Prisma {
   export type TopBlogsNullableScalarRelationFilter = {
     is?: TopBlogsWhereInput | null
     isNot?: TopBlogsWhereInput | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type BlogsOrderByRelevanceInput = {
@@ -3264,6 +3292,24 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -3320,6 +3366,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -3379,6 +3429,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -3406,6 +3471,35 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -3470,7 +3564,7 @@ export namespace Prisma {
   export type BlogsCreateWithoutTopBlogsInput = {
     blogID: string
     title: string
-    banner: string
+    banner?: string | null
     content: string
     score: number
     views: number
@@ -3480,7 +3574,7 @@ export namespace Prisma {
   export type BlogsUncheckedCreateWithoutTopBlogsInput = {
     blogID: string
     title: string
-    banner: string
+    banner?: string | null
     content: string
     score: number
     views: number
@@ -3506,7 +3600,7 @@ export namespace Prisma {
   export type BlogsUpdateWithoutTopBlogsInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
@@ -3516,7 +3610,7 @@ export namespace Prisma {
   export type BlogsUncheckedUpdateWithoutTopBlogsInput = {
     blogID?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
-    banner?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number

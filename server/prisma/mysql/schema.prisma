@@ -17,7 +17,7 @@ datasource db {
 model Blogs {
   blogID   String    @id 
   title    String //Tiêu đề của bài Blogs
-  banner   String //Duong link url toi hinh anh upload len cloud 
+  banner   String? //Duong link url toi hinh anh upload len cloud 
   content  String //Nội dung của bài Blog !!! 
   score    Int //Dung de do do thanh cong cua bai Blog do, se co cong thuc rieng de tinh -> 
   views    Int //Số lượng người xem của một bài Blogs 

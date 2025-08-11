@@ -16,6 +16,7 @@ datasource db {
 
 model User {
   userID      String     @id @map("_id") @db.ObjectId
+  avatar      String?
   name        String
   username    String
   password    String
