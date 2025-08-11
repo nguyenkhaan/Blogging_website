@@ -3,8 +3,9 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { router as blogRouter } from './routes/blog.router.mts'
 import { jsonConfig , urlEncodedConfig , multerConfig , staticFileConfig } from './config/server.config.mts'
-dotenv.config() 
+dotenv.config({path: './.env'}) 
 
+console.log(process.env.HOST)
 const HOST = process.env.PORT 
 const app = express()
 
