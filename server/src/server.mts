@@ -2,7 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { router as blogRouter } from './routes/blog.router.mts'
-import { router as loginRouter } from './routes/login.router.mts'
+import { router as userRouter } from './routes/user.router.mts'
 import { jsonConfig , urlEncodedConfig , multerConfig , staticFileConfig } from './config/server.config.mts'
 dotenv.config({path: './.env'}) 
 
@@ -13,14 +13,15 @@ const app = express()
 app.use(cors({
     origin: 'http://localhost:5173', // hoặc '*' nếu cho tất cả
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type'], 
+    credentials: true 
   }));
 jsonConfig(app) 
 urlEncodedConfig(app) 
 staticFileConfig(app) 
 
 app.use(blogRouter) 
-app.use(loginRouter) 
+app.use(userRouter) 
 app.listen(6869 , function() {
     console.log('Khoi dong thanh cong') 
 })

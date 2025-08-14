@@ -1,12 +1,15 @@
 import { createClient } from "redis";
 
 const client = createClient() 
-
+let isConnected = false 
 client.on('error', err => console.log('Redis Client Error', err));
 async function redisConnection() 
 {
-    const connection =  await client.connect() 
-    return connection
+    if (!isConnected) {
+        await client.connect() //Chi duoc phep ket noi 1 lan duy nhat, neu ket noi nhieu lan no se bao loi socket 
+        isConnected = true 
+    }
+    return client 
 } 
  
 export {redisConnection}

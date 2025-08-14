@@ -25,8 +25,10 @@ function LoginForm() {
         const {Email , Password} = data 
         const res = await sendLoginData(Email , Password)
         .then(data => {
+            console.log('>>check data: ', data)
             if (data.data.code == -1) onError() 
                 else if (data.data.code == 2) onSuccess() 
+            return 
         }) 
     }
     const onSuccess = () => {

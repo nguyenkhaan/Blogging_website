@@ -5,5 +5,7 @@ const router = express.Router()
 
 const upload = multerConfig() 
 router.post('/login' , upload.none(), login)
-
+router.post('/register' , upload.none() , (req , res) => {
+    console.log(req.body) 
+})
 export {router}
