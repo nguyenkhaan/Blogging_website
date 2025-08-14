@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import { router as blogRouter } from './routes/blog.router.mts'
+import { router as loginRouter } from './routes/login.router.mts'
 import { jsonConfig , urlEncodedConfig , multerConfig , staticFileConfig } from './config/server.config.mts'
 dotenv.config({path: './.env'}) 
 
@@ -19,7 +20,7 @@ urlEncodedConfig(app)
 staticFileConfig(app) 
 
 app.use(blogRouter) 
-
+app.use(loginRouter) 
 app.listen(6869 , function() {
     console.log('Khoi dong thanh cong') 
 })

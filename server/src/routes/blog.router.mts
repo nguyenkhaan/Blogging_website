@@ -8,3 +8,7 @@ const upload = multerConfig()
 router.post('/blog-upload', upload.single('banner'), uploadBlog)
 
 export {router}
+//htpp://localhost:6869/blog-upload
+//**
+// 
+// */

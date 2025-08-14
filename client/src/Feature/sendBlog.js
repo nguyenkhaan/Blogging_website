@@ -6,7 +6,7 @@ async function sendBlog(submissionData)
     data.append('content' , submissionData.content) 
     const file = submissionData.banner   //Khong tu hien thi ra chuoi base64 hoac nhi phan vi se rat lon 
     data.append('banner', file)
-    await api.post('/blogs' , data , {
+    await api.post('/blog-upload' , data , {
         headers: {
             "Content-Type": "multipart/form-data"
         }

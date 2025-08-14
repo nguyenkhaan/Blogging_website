@@ -1,9 +1,14 @@
+//Loi o login Form => 
+/**
+ * Sửa lại email thành username -> Chỉnh sửa sau (Tiến độ xử lí: 0%)
+ */
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import Input from '../Input'
+import { sendLoginData } from '../../Feature/sendLoginData'
 function LoginForm() {
     const [loginState, setLoginState] = useState(0);
     const navigate = useNavigate();
@@ -14,9 +19,18 @@ function LoginForm() {
             }, 2000)
         }
     }, [loginState])
-    const onSubmit = (data) => {
-        setLoginState(1);   //Đăng nhập thành công 
-        console.log(data);  //hiển thị thông tin gửi về 
+    const onSubmit = async (data) => {
+        //Xử lí đăng nhập, giá trị đăng nhập sẽ được gửi về Form 
+        console.log('>>>Check data: ' , data); //Thong tin dang nhap gui ve va nhan duoc cai nay 
+        const {Email , Password} = data 
+        const res = await sendLoginData(Email , Password)
+        .then(data => {
+            if (data.data.code == -1) onError() 
+                else if (data.data.code == 2) onSuccess() 
+        }) 
+    }
+    const onSuccess = () => {
+        setLoginState(1);
     }
     const onError = () => {
         setLoginState(-1);   //Đăng nhập thất bại 
@@ -29,7 +43,7 @@ function LoginForm() {
         //clearError: xóa lỗi 
     });
     return (
-        <form className="flex flex-col justify-center items-center gap-6 mt-4" onSubmit={handleSubmit(onSubmit, onError)}>
+        <form className="flex flex-col justify-center items-center gap-6 mt-4" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 placeholder="✉️ Email"
                 name="Email"

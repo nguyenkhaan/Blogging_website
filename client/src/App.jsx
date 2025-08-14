@@ -7,6 +7,7 @@ import Profile from './Pages/Profile.jsx'
 import Toast from './Component/Toast.jsx'
 import { callingToast } from './Service/callingToast.js'
 import UserDashboard from './Pages/UserDashboard.jsx'
+import Login from './Pages/Login.jsx'
 function App() {
     return (
         <div className="w-full h-full relative">
@@ -19,7 +20,7 @@ function App() {
                         return <Route key={index} path={path} element={element}></Route>
                     })}
                 </Routes> */}
-                <UserDashboard /> 
+                <Login /> 
             </div>
 
         </div>

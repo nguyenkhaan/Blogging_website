@@ -32,7 +32,8 @@ async function uploadBlog(req: Request, res: Response) {
             userID: 'admin'
         };
 
-        const blog = await createData(blogData);
+        const blog = await createData(blogData);  //Goi ham cua service va xu li logic, service goi model 
+        //de luu xuong database 
         return res.status(201).json({
             code: 2,
             message: 'Upload successfully',
