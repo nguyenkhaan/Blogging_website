@@ -11,7 +11,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = env("MONGO_URL")
+  url      = "mongodb://cloud:abc123!@localhost:27017/BLOG?authSource=admin"
 }
 
 model User {
