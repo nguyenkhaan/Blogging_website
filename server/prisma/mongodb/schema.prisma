@@ -15,7 +15,7 @@ datasource db {
 }
 
 model User {
-  userID      String     @id @map("_id") @db.ObjectId //Loi: Nang cap uuid thanh chuan 16 cho kho bi trung 
+  userID      String     @id @map("_id") @db.ObjectId
   avatar String?
   name        String
   username    String

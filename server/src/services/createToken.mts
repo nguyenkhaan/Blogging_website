@@ -15,13 +15,13 @@ const makeSignature = (header: unknown , payload: string) => {
     const signature = secretKey.update(`${encodedHeader}.${encodedPayload}`).digest("base64url")
     return signature
 }
-const makeToken = (id: string, name:string, email:string, password: string) => {
+const makeToken = (id: string, name:string) => {
     const header = {
         alg: "HS256",
         typ: "JWT"
     }
     const payload = {
-        id, name, email, password
+        id, name  //Duma dua nao gui them password do di 
     }
     const encodedHeader = makeEncodedHeader(header) 
     const encodedPayload = makeEncodedPayload(payload)

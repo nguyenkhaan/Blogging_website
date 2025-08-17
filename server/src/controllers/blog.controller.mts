@@ -8,7 +8,7 @@ async function uploadBlog(req: Request, res: Response) {
     try {
         const { title, content } = req.body;
         if (!title || !content) {
-            return res.status(400).json({ code: -1, message: 'Title and content are required' });
+            return res.status(400).json({ code: -1, message: 'Thiếu nội dung hoặc tiêu đề' });
         }
         let url = null
         let id = 'admin'; // hoặc uuid()
@@ -17,7 +17,7 @@ async function uploadBlog(req: Request, res: Response) {
                 const base64File = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
                 url = await uploadToCloud(base64File, id);
             } catch (err) {
-                return res.status(500).json({ code: -1, message: 'Upload to Cloudinary failed' });
+                return res.status(500).json({ code: -2, message: 'Lỗi hê thống - Vui lòng thử lại sau' });
             }
         }
         console.log(url?.url.secure_url ?? null) 
@@ -34,8 +34,8 @@ async function uploadBlog(req: Request, res: Response) {
 
         const blog = await createData(blogData);
         return res.status(201).json({
-            code: 2,
-            message: 'Upload successfully',
+            code: 1,
+            message: 'Upload thành công',
             data: blog
         });
 
@@ -43,8 +43,8 @@ async function uploadBlog(req: Request, res: Response) {
     {
         console.error(error);
         return res.status(500).json({
-            code: -1,
-            message: 'Failed to load into database'
+            code: -2,
+            message: 'Lỗi hệ thống - Vui lòng thử lại sau'
         });
     }
 }

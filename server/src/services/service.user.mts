@@ -1,4 +1,5 @@
 import { mongodbPrisma } from "../config/prisma.config.mts"
+import { uuid } from "../helpers/uuid.mts"
 async function getData(email: string , password: string) 
 {
     const user = await mongodbPrisma.user.findFirst({
@@ -10,9 +11,25 @@ async function getData(email: string , password: string)
     if (!user) return null 
     return user 
 } 
-async function createData() 
+async function createData(email: string, password: string) 
 {
-
+    let userID = (uuid() + uuid())
+    userID = userID.replace(/-/g,'').substring(0 , 24)
+    console.log(userID)
+    const user = await mongodbPrisma.user.create({
+        data: {
+            userID: userID, 
+            username: email, 
+            password: password, 
+            name: email, 
+            activities: [], 
+            avatar: 'https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg', 
+            blogs: [], 
+            famous: 0, 
+            follows: 0, 
+            subscribers: 0 
+        }
+    })
 } 
 async function updateData() 
 {
