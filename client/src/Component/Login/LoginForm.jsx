@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import Input from '../Input'
+import api from '../../Aixos/api'
+import { sendLoginData } from '../../Feature/sendLoginData'
 function LoginForm() {
     const [loginState, setLoginState] = useState(0);
     const navigate = useNavigate();
@@ -14,9 +16,32 @@ function LoginForm() {
             }, 2000)
         }
     }, [loginState])
-    const onSubmit = (data) => {
-        setLoginState(1);   //Đăng nhập thành công 
-        console.log(data);  //hiển thị thông tin gửi về 
+    const onSubmit = async (data) => {
+        //Thuc hien call api 
+        const {Email , Password} = data 
+        try {
+            if (!localStorage.getItem('loginToken')) 
+            {
+                const res = await sendLoginData(Email , Password) 
+                .then(data => {
+                    if (data.data.code == -1) onError() 
+                        else {
+                            const jwtToken = JSON.parse(data.data.token)
+                            onSuccess(jwtToken)   //truyen token de luu vao localStorage
+                        }
+                }) 
+            }
+            else navigate('/')
+        } catch (error) {
+            throw new Error("Loi dang nhap")  //Dang nhap bi loi 
+        }
+    }
+    const onSuccess = (token) => {
+        localStorage.setItem('loginToken' , token)
+        setLoginState(1) 
+        setTimeout(() => {
+            navigate('/')
+        }, 1800)
     }
     const onError = () => {
         setLoginState(-1);   //Đăng nhập thất bại 
