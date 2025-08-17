@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import Input from '../Input'
+import { sendReigsterData } from '../../Feature/sendRegisterData'
 //Note
 /*
 0: Chưa làm gì hết 
@@ -22,13 +23,25 @@ function RegisterForm() {
             return () => clearTimeout(timeOutID)
         }
     }, [registerState])
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         if (document.getElementById('Password').value != document.getElementById('Password_again').value) {
             setRegisterState(-2);   //Nếu như 2 mật khẩu nhập lại không khớp nhau thì đăng nhập thất bại - Mật khẩu không khớp 
             return;
         }
-        setRegisterState(1);   //Đăng ký thành công 
+        try {
+            if (!localStorage.getItem('loginToken'))
+            {
+                const {Email , Password} = data 
+                const res = await sendReigsterData(Email , Password) 
+                .then(data => console.log(data.data))
+            }
+        } catch (error) {
+            throw new Error("Loi dang ki")
+        }
         console.log(data);  //hiển thị thông tin gửi về 
+    }
+    const onSuccess = () => {
+        setRegisterState(1) 
     }
     const onError = () => {
         setRegisterState(-1);   //Đăng ký thất bại 
@@ -41,7 +54,7 @@ function RegisterForm() {
         //clearError: xóa lỗi 
     });
     return (
-        <form className="flex flex-col justify-center items-center gap-6 mt-4" onSubmit={handleSubmit(onSubmit, onError)}>
+        <form className="flex flex-col justify-center items-center gap-6 mt-4" onSubmit={handleSubmit(onSubmit)}>
             <Input
                 placeholder="✉️ Email"
                 name="Email"
