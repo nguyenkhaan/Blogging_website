@@ -7,6 +7,7 @@ import Register from "../Pages/Register";
 import UserDashboard from "../Pages/UserDashboard";
 import MainLayout from "../Layout/MainLayout";
 import Blogs from '../Pages/Blogs';
+import SearchBoard from '../Component/SearchBoard/SearchBoard';
 //Define public Routes
 const publicRoutes = [
   {
@@ -44,12 +45,20 @@ const publicRoutes = [
       </MainLayout>
   },
   {
-    path: '/', 
-    role: 'Blogs Page', 
-    element: 
-    <MainLayout>
+    path: '/',
+    role: 'Blogs Page',
+    element:
+      <MainLayout>
         <Blogs></Blogs>
-    </MainLayout>
+      </MainLayout>
+  },
+  {
+    path: '/search',
+    role: 'Search Page',
+    element:
+      <MainLayout>
+        <SearchBoard></SearchBoard>
+      </MainLayout>
   }
 ];
 //Define private routes
