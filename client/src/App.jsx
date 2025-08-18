@@ -16,12 +16,11 @@ function App() {
             <Toast /> 
             <div className='w-full relative'>
                 <Scroll />
-                {/* <Routes>
+                <Routes>
                     {publicRoutes.map(({ path, role, element }, index) => {
                         return <Route key={index} path={path} element={element}></Route>
                     })}
-                </Routes> */}
-                <Register /> 
+                </Routes>
             </div>
 
         </div>

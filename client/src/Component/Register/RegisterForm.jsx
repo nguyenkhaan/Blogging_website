@@ -33,7 +33,10 @@ function RegisterForm() {
             {
                 const {Email , Password} = data 
                 const res = await sendReigsterData(Email , Password) 
-                .then(data => console.log(data.data))
+                .then(data => {
+                    if (data.data.code < 0) onError() 
+                        else onSuccess() 
+                })
             }
         } catch (error) {
             throw new Error("Loi dang ki")
@@ -42,6 +45,9 @@ function RegisterForm() {
     }
     const onSuccess = () => {
         setRegisterState(1) 
+        setTimeout(() => {
+            navigate('/')
+        } , 1800)
     }
     const onError = () => {
         setRegisterState(-1);   //Đăng ký thất bại 

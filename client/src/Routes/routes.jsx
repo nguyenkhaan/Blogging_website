@@ -1,19 +1,20 @@
 //Define public Pages
 import React from 'react';
-import Home from "../Pages/Home";
+import Blogger from '../Pages/Blogger';
 import InnerBlog from "../Pages/InnerBlog";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import UserDashboard from "../Pages/UserDashboard";
 import MainLayout from "../Layout/MainLayout";
+import Blogs from '../Pages/Blogs';
 //Define public Routes
 const publicRoutes = [
   {
-    path: "/",
-    role: "Home",
+    path: "/blogger",
+    role: "Blogger",
     element: (
       <MainLayout>
-        <Home></Home>
+        <Blogger></Blogger>
       </MainLayout>
     ),
   },
@@ -42,6 +43,14 @@ const publicRoutes = [
         <UserDashboard></UserDashboard>
       </MainLayout>
   },
+  {
+    path: '/', 
+    role: 'Blogs Page', 
+    element: 
+    <MainLayout>
+        <Blogs></Blogs>
+    </MainLayout>
+  }
 ];
 //Define private routes
 const privateRoutes = [

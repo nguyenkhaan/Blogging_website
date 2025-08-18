@@ -5,23 +5,23 @@ import { motion } from 'framer-motion'
 const navbarChoices = [
     {
         path: '/',
-        title: 'Home'
+        title: 'MỚI NHẤT'
     },
     {
-        path: '/blog',
-        title: 'Blogs'
+        path: '/category',
+        title: 'DANH MỤC'
     },
     {
-        path: '/login',
-        title: 'Login'
+        path: '/series',
+        title: 'SERIES'
     },
     {
-        path: '/dashboard',
-        title: 'Dashboard'
+        path: '/trending',
+        title: 'TRENDING'
     },
     {
-        path: '/',
-        title: 'Announcements'
+        path: '/blogger',
+        title: 'BLOGGER'
     }
 ]
 function MenuList() {
