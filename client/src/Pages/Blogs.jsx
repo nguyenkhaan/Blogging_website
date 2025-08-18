@@ -12,7 +12,7 @@ const sampleBlogData = {
     stars: 5,
     content: `Trong bài viết trước chúng ta đã tìm hiểu về: SOLID trong lập trình hướng đối tượng OOP.
                 Trong bài viết này chúng ta sẽ tìm hiểu chi tiết hơn về: DIP(Dependency Inversion Priciple) nguyên tắc thứ 5 trong SOLID.Bên cạnh đó là cách áp dụng thực tế DIP thông qua kỹ thuật IoC(Inversion of Control) trong C#.IoC là gì?
-                IoC là viết tắt của Inversion of Control là nguyên lý về đảo ngượ...`
+                IoC là viết tắt của Inversion of Control là nguyên lý về đảo ngược`
 }
 const sampleAuthorData = {
     name: 'Nguyen Kha An', 

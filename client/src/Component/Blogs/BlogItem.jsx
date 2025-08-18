@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-function BlogItem({blogData}) 
+function BlogItem({blogData , preview})    //preview: Có xem trước nội dung bài viết hay không 
 {
     //Toc do doc trung binh cua nguoi viet la 250WPM 
     let {id , title , author , date , views, stars, content } = blogData
@@ -24,9 +24,12 @@ function BlogItem({blogData})
                     <span title = "20 phút đọc">{readingTime} phút đọc</span>
                 </div>
             {/* Tieu de bai viet */}
-                <h3 className = "md:text-lg text-base hover:cursor-pointer hover:underline hover:text-blue-700 text-black">
+                <h3 className = "md:text-lg text-base hover:cursor-pointer hover:underline hover:text-blue-700 text-black line-clamp-1">
                     {title}
                 </h3>
+                {preview && <p className = "text-base text-gray-800 my-3 line-clamp-5">
+                    {content}
+                </p>}
             {/* So luot xem - So sao danh gia */}
                 <div className="flex gap-5 md:text-sm text-xs text-gray-600">
                     <span className = "block" title = "Lượt xem"><i class="fa-solid fa-eye"></i> {Views}</span>
