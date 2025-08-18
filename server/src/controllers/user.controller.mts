@@ -17,7 +17,7 @@ async function login(req: Request , res: Response)
             message: 'Thông tin đăng nhập sai' //Thong tin dang nhap sai 
         })
     //Thuc hien set jwt token va gui ve cho FE 
-    const token = makeToken(user.userID , user.name) 
+    const token = makeToken(user.userID , user.name, email, user.avatar as string) 
     return res.status(200).json({
         code: 2, 
         message: 'Đăng nhập thành công', 
