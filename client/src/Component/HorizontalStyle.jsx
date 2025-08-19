@@ -22,7 +22,7 @@ function HorizontalStyle() {
             </div>
             <div className={`${pathname.includes('/search') && 'hidden'} flex-1 text-black flex justify-end items-center gap-2 border-1 rounded-[5px] overflow-hidden`}>
                 <input type="text" value={searchInput} onChange={(e) => setSearchInput(e.target.value)} className='outline-none  w-full px-2 text-[13px]' placeholder='Search for blog ' />
-                <Link to={`/search?search=${searchInput}`} className='w-10 h-10 shrink-0 flex items-center justify-center hover:opacity-90 text-white bg-[#193CB8] duration-100 cursor-pointer'>
+                <Link to={`/search?search=${searchInput}&blogType=all&order=none`} className='w-10 h-10 shrink-0 flex items-center justify-center hover:opacity-90 text-white bg-[#193CB8] duration-100 cursor-pointer'>
                     <i className="fa-solid fa-magnifying-glass "></i>
                 </Link>
             </div>
