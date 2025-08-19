@@ -10,7 +10,11 @@ async function createData(blog: any)
             score: blog.score, 
             views: blog.views, 
             banner: blog.banner, 
-            userID: blog.userID
+            userID: blog.userID, 
+            watchs: 0, 
+            createdAt: new Date(Date.now()).toLocaleDateString("vi-VN"),
+            updatedAt: new Date(Date.now()).toLocaleDateString("vi-VN") 
+
         }
     })
 }

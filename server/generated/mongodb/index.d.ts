@@ -852,12 +852,14 @@ export namespace Prisma {
     follows: number | null
     subscribers: number | null
     famous: number | null
+    activities: number | null
   }
 
   export type UserSumAggregateOutputType = {
     follows: number | null
     subscribers: number | null
     famous: number | null
+    activities: number[]
   }
 
   export type UserMinAggregateOutputType = {
@@ -901,12 +903,14 @@ export namespace Prisma {
     follows?: true
     subscribers?: true
     famous?: true
+    activities?: true
   }
 
   export type UserSumAggregateInputType = {
     follows?: true
     subscribers?: true
     famous?: true
+    activities?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -1041,7 +1045,7 @@ export namespace Prisma {
     subscribers: number
     blogs: string[]
     famous: number
-    activities: Date[]
+    activities: number[]
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1106,7 +1110,7 @@ export namespace Prisma {
       subscribers: number
       blogs: string[]
       famous: number
-      activities: Date[]
+      activities: number[]
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1508,7 +1512,7 @@ export namespace Prisma {
     readonly subscribers: FieldRef<"User", 'Int'>
     readonly blogs: FieldRef<"User", 'String[]'>
     readonly famous: FieldRef<"User", 'Float'>
-    readonly activities: FieldRef<"User", 'DateTime[]'>
+    readonly activities: FieldRef<"User", 'Int[]'>
   }
     
 
@@ -1938,20 +1942,6 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
   /**
    * Deep Input Types
    */
@@ -1970,7 +1960,7 @@ export namespace Prisma {
     subscribers?: IntFilter<"User"> | number
     blogs?: StringNullableListFilter<"User">
     famous?: FloatFilter<"User"> | number
-    activities?: DateTimeNullableListFilter<"User">
+    activities?: IntNullableListFilter<"User">
   }
 
   export type UserOrderByWithRelationInput = {
@@ -1999,7 +1989,7 @@ export namespace Prisma {
     subscribers?: IntFilter<"User"> | number
     blogs?: StringNullableListFilter<"User">
     famous?: FloatFilter<"User"> | number
-    activities?: DateTimeNullableListFilter<"User">
+    activities?: IntNullableListFilter<"User">
   }, "userID">
 
   export type UserOrderByWithAggregationInput = {
@@ -2033,7 +2023,7 @@ export namespace Prisma {
     subscribers?: IntWithAggregatesFilter<"User"> | number
     blogs?: StringNullableListFilter<"User">
     famous?: FloatWithAggregatesFilter<"User"> | number
-    activities?: DateTimeNullableListFilter<"User">
+    activities?: IntNullableListFilter<"User">
   }
 
   export type UserCreateInput = {
@@ -2046,7 +2036,7 @@ export namespace Prisma {
     subscribers?: number
     blogs?: UserCreateblogsInput | string[]
     famous?: number
-    activities?: UserCreateactivitiesInput | Date[] | string[]
+    activities?: UserCreateactivitiesInput | number[]
   }
 
   export type UserUncheckedCreateInput = {
@@ -2059,7 +2049,7 @@ export namespace Prisma {
     subscribers?: number
     blogs?: UserCreateblogsInput | string[]
     famous?: number
-    activities?: UserCreateactivitiesInput | Date[] | string[]
+    activities?: UserCreateactivitiesInput | number[]
   }
 
   export type UserUpdateInput = {
@@ -2071,7 +2061,7 @@ export namespace Prisma {
     subscribers?: IntFieldUpdateOperationsInput | number
     blogs?: UserUpdateblogsInput | string[]
     famous?: FloatFieldUpdateOperationsInput | number
-    activities?: UserUpdateactivitiesInput | Date[] | string[]
+    activities?: UserUpdateactivitiesInput | number[]
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2083,7 +2073,7 @@ export namespace Prisma {
     subscribers?: IntFieldUpdateOperationsInput | number
     blogs?: UserUpdateblogsInput | string[]
     famous?: FloatFieldUpdateOperationsInput | number
-    activities?: UserUpdateactivitiesInput | Date[] | string[]
+    activities?: UserUpdateactivitiesInput | number[]
   }
 
   export type UserCreateManyInput = {
@@ -2096,7 +2086,7 @@ export namespace Prisma {
     subscribers?: number
     blogs?: UserCreateblogsInput | string[]
     famous?: number
-    activities?: UserCreateactivitiesInput | Date[] | string[]
+    activities?: UserCreateactivitiesInput | number[]
   }
 
   export type UserUpdateManyMutationInput = {
@@ -2108,7 +2098,7 @@ export namespace Prisma {
     subscribers?: IntFieldUpdateOperationsInput | number
     blogs?: UserUpdateblogsInput | string[]
     famous?: FloatFieldUpdateOperationsInput | number
-    activities?: UserUpdateactivitiesInput | Date[] | string[]
+    activities?: UserUpdateactivitiesInput | number[]
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -2120,7 +2110,7 @@ export namespace Prisma {
     subscribers?: IntFieldUpdateOperationsInput | number
     blogs?: UserUpdateblogsInput | string[]
     famous?: FloatFieldUpdateOperationsInput | number
-    activities?: UserUpdateactivitiesInput | Date[] | string[]
+    activities?: UserUpdateactivitiesInput | number[]
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -2184,11 +2174,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type DateTimeNullableListFilter<$PrismaModel = never> = {
-    equals?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    has?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    hasEvery?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    hasSome?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+  export type IntNullableListFilter<$PrismaModel = never> = {
+    equals?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    has?: number | IntFieldRefInput<$PrismaModel> | null
+    hasEvery?: number[] | ListIntFieldRefInput<$PrismaModel>
+    hasSome?: number[] | ListIntFieldRefInput<$PrismaModel>
     isEmpty?: boolean
   }
 
@@ -2209,6 +2199,7 @@ export namespace Prisma {
     follows?: SortOrder
     subscribers?: SortOrder
     famous?: SortOrder
+    activities?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -2237,6 +2228,7 @@ export namespace Prisma {
     follows?: SortOrder
     subscribers?: SortOrder
     famous?: SortOrder
+    activities?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -2313,7 +2305,7 @@ export namespace Prisma {
   }
 
   export type UserCreateactivitiesInput = {
-    set: Date[] | string[]
+    set: number[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -2347,8 +2339,8 @@ export namespace Prisma {
   }
 
   export type UserUpdateactivitiesInput = {
-    set?: Date[] | string[]
-    push?: Date | string | Date[] | string[]
+    set?: number[]
+    push?: number | number[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {

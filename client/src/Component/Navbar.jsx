@@ -23,7 +23,7 @@ function NavbarAbove() {
             ); //Thông tin chiết xuất ra từ token
             setTokenData({ ...tokenInformation.payload });
         } else setLogin(false);
-    });
+    } , []);
     return (
         <div>
             <div className="bg-blue-800 px-4 md:px-12 w-full h-12 flex items-center justify-between">
@@ -79,6 +79,7 @@ function NavbarAbove() {
                             id={tokenData.id}
                             avatar={tokenData.avatar}
                             name={tokenData.name}
+                            loginState={setLogin}
                         />
                     )}
                 </div>

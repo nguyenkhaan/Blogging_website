@@ -8,6 +8,7 @@ function AccountIcon({
     id, //id người dùng
     avatar, //Link dẫn tới avatar người dùng
     name,
+    loginState
 }) {
     const [show, setShow] = useState(false);
     const handleClick = () => {
@@ -16,6 +17,7 @@ function AccountIcon({
     const navigate = useNavigate() 
     const handleLogoutClick = () => {
         localStorage.removeItem('loginToken')  //Đăng xuất 
+        loginState(false) //Thoát khỏi chế độ đăng nhập 
         navigate('/')
     }
     return (

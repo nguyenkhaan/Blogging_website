@@ -24,5 +24,5 @@ model User {
   subscribers Int        @default(0) //So luong nguoi ma nguoi dung dang ki 
   blogs       String[]   @default([]) //So luong bai Blogs 
   famous      Float      @default(0) //Danh gia muc do noi tieng cua tac gia 
-  activities  DateTime[] @default([]) //Hoat dong cua nguoi dung 
+  activities  Int[] @default([]) //Hoat dong cua nguoi dung 
 }

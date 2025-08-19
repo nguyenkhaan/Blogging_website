@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import HeatMap from './HeatMap'
-import { totalAction } from '../../Service/getHeatMapData'
 import { getHeatmapColors } from '../../Service/getHeatMapData'
-function Frequency() {
+function Frequency({
+    activities
+}) 
+{
+    let totalAction = activities.reduce((acc , curr) => acc + curr , 0)
     let annotations = [0 , 1 , 2 , 3 , 4]  //Mảng này để tạo ra 4 ô màu nhỏ nằm ở dưới cùng, làm nhiệm vụ chú thích cho người dùng về cấp độ các màu 
     return (
         <>
@@ -22,7 +25,7 @@ function Frequency() {
                 <span className="col-span-4 mb-1">Nov</span>
                 <span className="col-span-5 mb-1">Dec</span>
             </span>
-            <HeatMap />
+            <HeatMap activities = {activities} />
             <div className = "mt-6 flex items-center gap-1 justify-end">
                 {annotations.map((annotation) => <div className = "rounded corosr-pointer w-3.5 h-3.5" style={{backgroundColor: getHeatmapColors(annotation)}}></div>)}
                 

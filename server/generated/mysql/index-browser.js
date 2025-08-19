@@ -127,7 +127,10 @@ exports.Prisma.BlogsScalarFieldEnum = {
   content: 'content',
   score: 'score',
   views: 'views',
-  userID: 'userID'
+  userID: 'userID',
+  createdAt: 'createdAt',
+  watchs: 'watchs',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TopBlogsScalarFieldEnum = {
