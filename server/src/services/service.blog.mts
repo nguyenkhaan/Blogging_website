@@ -12,8 +12,8 @@ async function createData(blog: any)
             banner: blog.banner, 
             userID: blog.userID, 
             watchs: 0, 
-            createdAt: new Date(Date.now()).toLocaleDateString("vi-VN"),
-            updatedAt: new Date(Date.now()).toLocaleDateString("vi-VN") 
+            createdAt: new Date(Date.now()).toISOString(), 
+            updatedAt: new Date(Date.now()).toISOString() 
 
         }
     })

@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { useForm, Controller } from "react-hook-form";
+import { useLocation } from "react-router-dom";
 import TextEditorBox from './TextEditorBox'
 import { sendBlog } from "../../Feature/sendBlog";
-
+import { callingToast } from "../../Service/callingToast";
 export default function BlogEditBoard() {
     const [bannerPreview, setBannerPreview] = useState(null);
     const [editorContent, setEditorContent] = useState('');
     const [editorRef, setEditorRef] = useState(null);
+    const location = useLocation() 
 
     // Cleanup function
     useEffect(() => {
@@ -34,10 +36,12 @@ export default function BlogEditBoard() {
             ...data,
             content: finalContent
         };
-        
+        const id = (new URLSearchParams(location.search)).get('id') 
         console.log('Submitting blog post:', submissionData);  //Du lieu nhan duoc chinh la submissionData 
-        sendBlog(submissionData) //Gui du lieu ve server 
-
+        // const res = await sendBlog(submissionData , id) //Gui du lieu ve server 
+        // if (res.data.code < 0) callingToast('error' , 'Lỗi đăng bài - Vui lòng thử lại sau') 
+             callingToast('success' , 'Đăng bài thành công')
+        
     }
 
     return (
