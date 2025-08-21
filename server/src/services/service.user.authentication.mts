@@ -1,0 +1,44 @@
+import { mongodbPrisma } from "../config/prisma.config.mts"
+import { uuid } from "../helpers/uuid.mts"
+import { startDate , endDate } from "../helpers/currentDate.mts"
+import { getDayBetween } from "../helpers/calcDateBetween.mts"
+async function getData(email: string , password: string) 
+{
+    const user = await mongodbPrisma.user.findFirst({
+        where: {
+            username: email, 
+            password: password
+        }
+    })
+    if (!user) return null 
+    return user 
+} 
+async function createData(email: string, password: string) 
+{
+    let userID = (uuid() + uuid())
+    userID = userID.replace(/-/g,'').substring(0 , 24)
+    console.log(userID)
+    const user = await mongodbPrisma.user.create({
+        data: {
+            userID: userID, 
+            username: email, 
+            password: password, 
+            name: email, 
+            activities: Array(getDayBetween(startDate , endDate)).fill(0), 
+            avatar: 'https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg', 
+            blogs: [], 
+            famous: 0, 
+            follows: 0, 
+            subscribers: 0 
+        }
+    })
+} 
+async function updateData() 
+{
+     
+} 
+async function deleteData()
+{
+
+} 
+export {getData , createData , updateData , deleteData}
