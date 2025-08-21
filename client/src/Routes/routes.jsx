@@ -60,6 +60,13 @@ const publicRoutes = [
       <MainLayout>
         <SearchBoard></SearchBoard>
       </MainLayout>
+  }, 
+  {
+    path: '/profile', 
+    role: 'Profile Page', 
+    element:  <MainLayout>
+    <Profile></Profile>
+  </MainLayout>
   }
 ];
 //Define private routes
