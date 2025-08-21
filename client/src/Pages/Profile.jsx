@@ -9,7 +9,7 @@ import Blogs from "../Component/Profile/Blogs";
 import { getUserBlogs } from "../Service/getUserBlogs";
 import { getURLQuery } from "../Service/getURLQuery";
 import { getUserPersonalInformation } from "../Service/getUserPersonalInformation";
-
+import { getUserPersonalBlogs } from "../Service/getUserPersonalBlogs";
 function Profile() {
     const [totalPages, setTotalPages] = useState(0);
     const [userBlogs, setUserBlogs] = useState([]);
@@ -31,18 +31,11 @@ function Profile() {
     useEffect(() => {
         //Chay lan dua tien khi component duoc mount nen dan toi bi fail
         setTotalPages(Math.ceil(userBlogs.length / 9));
-        setCurrItems(userBlogs.slice(1, 10));
+        setCurrItems(userBlogs.slice(0, 10));
     }, [userBlogs]);
     useEffect(() => {
         setCurrItems(userBlogs.slice(9 * (page - 1), 9 * (page - 1) + 9));
     }, [page]);
-
-    //[LẤY DỮ LIỆU - PERSONAL BLOGS]
-    useEffect(() => {
-        //FAKE CALL API de goi userBlogs, no bi faile o lan goi dau tein truoc khi render
-        setUserBlogs(getUserBlogs(1));
-    }, []);
-
     //[LẤY DỮ LIỆU - PERSONAL INFORMATION]
     useEffect(() => {
         const urlParams = getURLQuery(location);
@@ -52,6 +45,15 @@ function Profile() {
         ); //Giải dữ liệu nhận được vào state
     }, []);
     //[LẤY DỮ LIỆU - BLOGS INFORMATION]
+    useEffect(() => {
+        const urlParams = getURLQuery(location) 
+        const res = getUserPersonalBlogs(urlParams.get('id')).then(
+            data => {
+                console.log(data) 
+                setUserBlogs(data.data.blogs)
+            }
+        )
+    } , [])
     return (
         <div className="w-full grid min-h-screen grid-cols-16 gap-8 grid-rows-1">
             <Personal personalInformation={personalInformation} />

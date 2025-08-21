@@ -24,7 +24,7 @@ async function uploadBlog(req: Request, res: Response) {
         const blogData = {
             blogID: id,
             title,
-            banner: url?.url.secure_url ?? null, //Khi co public_id thi no dang tra ve 1 object co dang 
+            banner: url?.url.secure_url ?? 'https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg', //Khi co public_id thi no dang tra ve 1 object co dang 
             //{id , url : {} } vay nen ta dung ? de truy cap, ?? thi de phat hien ben trai la null thi lay null ve ben phai luon
             content,
             score: 0,

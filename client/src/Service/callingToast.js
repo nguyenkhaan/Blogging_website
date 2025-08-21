@@ -39,10 +39,10 @@ function callingToast({
     const timeOutID = setTimeout(() => {
         toastContainer.removeChild(newToast);
         clearTimeout(timeOutID); 
-    }, 4080)
+    }, 4010)
     newToast.innerHTML = toastHTML(type , message);
     const toastElement = newToast.querySelector('.toast-element');
-    toastElement.style.animation = `slideInLeft ease .3s , fadeOut 1s 3s ease-in-out`;
+    toastElement.style.animation = `slideInLeft ease .3s , fadeOut 1s 3s ease-in-out forwards`;
     toastContainer.appendChild(newToast);
     
 }
