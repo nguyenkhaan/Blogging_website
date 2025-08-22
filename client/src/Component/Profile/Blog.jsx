@@ -17,10 +17,13 @@ function Blog({ userBlog }) {
 
             {/* Nội dung */}
             <div className="w-full py-5 max-h-62">
-                <h3 className="font-thin text-lg text-blue-900 px-3 text-justify line-clamp-2">
-                    {userBlog.title}
-                </h3>
-                <div className="w-full text-sm mt-2 leading-[22px] px-3 text-gray-800 font-thin line-clamp-7 h-38">
+                <Link to={`/blog?id=${userBlog.blogID}`}>
+                    <h3 className="font-semibold text-lg text-blue-900 hover:underline hover:cursor-pointer px-3 text-justify line-clamp-2">
+                        {userBlog.title}
+                    </h3>
+                </Link>
+
+                <div className="w-full text-sm mt-2 leading-[22px] px-3 text-gray-800 font-normal line-clamp-7 h-38">
                     {plainText(userBlog.content)}
                 </div>
             </div>

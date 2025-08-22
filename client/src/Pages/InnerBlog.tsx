@@ -30,9 +30,9 @@ export default function InnerBlog()
   } , [])
   return (
     <div className="w-full bg-[#F2F5F8] ">
-      <main className="w-full grid grid-cols-16 ">
+      <main className="w-full grid grid-cols-16 items-start">
         <figure className="flex justify-center items-center overflow-hidden max-h-70 col-span-16 relative">
-          <img src = {blogInfo.banner} alt="banner-pic" />
+          <img src = {blogInfo.banner} alt="banner-pic" className = "w-full object-contain"/>
           <h2 className="absolute text-white font-[700] text-[30px] bottom-[10%]">
             {blogInfo.title}
           </h2>
@@ -42,8 +42,8 @@ export default function InnerBlog()
           <ContactBox></ContactBox>
         </section>
 
-        <section className="w-full col-span-16 md:col-span-9 bg-white p-10 md:shadow-xl/30">
-          <article className="w-full flex flex-col gap-10 ">
+        <section className="w-full h-auto col-span-16 md:col-span-9 bg-white p-10 md:shadow-xl/30">
+          <article className="w-full flex flex-col gap-4 ">
             {textToHTML(blogInfo.content)}
           </article>
         </section>

@@ -15,7 +15,7 @@ function Blogs({ userBlogs }) {
                         Không có bài viết nào
                     </div>
                 ) : (
-                    <div className="w-full grid md:grid-cols-12 grid-cols-6 grid-rows-3 gap-4 2xl:gap-6">
+                    <div className="w-full grid md:grid-cols-12 grid-cols-6 gap-4 2xl:gap-6">
                         {userBlogs.map((userBlog) => (
                             <Blog userBlog={userBlog} />
                         ))}
