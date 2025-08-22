@@ -63,6 +63,7 @@ function Profile() {
                     <Frequency activities={personalInformation.activities} />
                 </div>
                 <div className="py-4 max-xl:w-screen px-6 2xl:px-0 max-w-[1280px]">
+                
                     <Blogs userBlogs={currItems} />
                 </div>
                 <div className="w-screen max-w-[1280px] 2xl:w-full flex items-center justify-center mt-4">

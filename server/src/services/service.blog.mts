@@ -26,8 +26,19 @@ async function updateData()
 {
 
 } 
-async function getData() 
+async function getData(id: string) 
 {
+    const res = await mysqlPrisma.blogs.findFirst({
+        where: {
+            blogID: id
+        }, 
+        select: {
+            banner: true, 
+            content: true,  
+            title: true, 
 
+        }
+    })
+    return res 
 }
-export {createData}
+export {createData , getData}
