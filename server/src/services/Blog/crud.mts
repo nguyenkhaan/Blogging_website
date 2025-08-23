@@ -1,5 +1,5 @@
 
-import { mysqlPrisma } from "../config/prisma.config.mts"
+import { mysqlPrisma } from "../../config/prisma.config.mts"
 async function createData(blog: any) 
 {
     return await mysqlPrisma.blogs.create({

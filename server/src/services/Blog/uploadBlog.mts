@@ -1,5 +1,4 @@
-import { cloudinary } from "../config/cloudinary.config.mts"
-import { uuid } from "../helpers/uuid.mts"
+import { cloudinary } from "../../config/cloudinary.config.mts"
 async function uploadToCloud(base64File:string , id:string) 
 {
     const url = await cloudinary.uploader.upload(base64File , {

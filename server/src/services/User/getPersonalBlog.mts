@@ -1,19 +1,6 @@
-import { mongodbPrisma } from "../config/prisma.config.mts";
-import { mysqlPrisma } from "../config/prisma.config.mts";
-async function addBlogForUser(userID: string , blogID: string) 
-{
-    await mongodbPrisma.user.update({
-        where: {
-            userID: userID
-        }, 
-        data: {
-            blogs: {
-                push: blogID
-            }
-        }
-    })
-}
-async function getUserPersonalBlogs(userID : string) 
+import { mongodbPrisma } from "../../config/prisma.config.mts";
+import { mysqlPrisma } from "../../config/prisma.config.mts";
+async function getPersonalBlog(userID : string) 
 {
     let selection = await mongodbPrisma.user.findFirst({
         where: {
@@ -41,4 +28,4 @@ async function getUserPersonalBlogs(userID : string)
     })
     return blogs; 
 }  
-export {addBlogForUser , getUserPersonalBlogs}
+export {getPersonalBlog}

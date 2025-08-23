@@ -1,10 +1,9 @@
 import type { Request } from "express"
 import type { Response } from "express"
-import { uploadToCloud } from "../services/uploadBlog.mts"
-import { uuid } from "../helpers/uuid.mts"
-import { createData } from "../services/service.blog.mts"
-import { addBlogForUser } from "../services/service.user.blog.mts"
-import { getData } from "../services/service.blog.mts"
+import { uploadToCloud } from "../../services/Blog/uploadBlog.mts"
+import { uuid } from "../../helpers/uuid.mts"
+import { createData } from "../../services/Blog/crud.mts"
+import { addBlogForUser } from "../../services/Blog/addBlogForUser.mts"
 async function uploadBlog(req: Request, res: Response) {
     try {
         const { title, content , userID} = req.body;
@@ -50,26 +49,4 @@ async function uploadBlog(req: Request, res: Response) {
         });
     }
 }
-
-async function getBlog(req: Request , res: Response) 
-{
-    try {
-        if (!req.body || !req.body.id) return res.status(200).json({
-            code: -1, 
-            message: 'Thông tin gửi lên không hợp lệ '
-        })
-        const data = await getData(req.body.id) 
-        return res.status(200).json({
-            code: 2, 
-            message: 'Lấy thông tin thành công', 
-            blogInfo: data 
-        })
-    } catch (error) {
-        return res.status(200).json({
-            code: -2, 
-            message: 'Lỗi hệ thống - vui lòng thử lại sau'
-        }) 
-    }   
-}
-export { uploadBlog , getBlog}
-
+export {uploadBlog}

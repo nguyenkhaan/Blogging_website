@@ -1,6 +1,7 @@
 import express from "express";
-import { login , register } from "../controllers/user.authentication.controller.mts";
-import { getPersonalInformation, getUserBlogs } from "../controllers/user.info.controller.mts";
+import { login , register } from "../controllers/User/user.authentication.controller.mts";
+import { getPersonalInformation } from "../controllers/User/user.personalInfo.mts";
+import { getUserBlogs } from "../controllers/User/getUserBlog.mts";
 const router = express.Router();
 //[POST] /login 
 router.post("/login", login );
