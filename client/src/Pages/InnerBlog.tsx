@@ -33,7 +33,7 @@ export default function InnerBlog()
       <main className="w-full grid grid-cols-16 items-start">
         <figure className="flex justify-center items-center overflow-hidden max-h-70 col-span-16 relative">
           <img src = {blogInfo.banner} alt="banner-pic" className = "w-full object-contain"/>
-          <h2 className="absolute text-white font-[700] text-[30px] bottom-[10%]">
+          <h2 className="absolute text-white font-[700] text-[30px] text-center bottom-[10%]">
             {blogInfo.title}
           </h2>
         </figure>

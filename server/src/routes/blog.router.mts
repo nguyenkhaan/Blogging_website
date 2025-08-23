@@ -4,6 +4,7 @@ import { multerConfig } from '../config/server.config.mts';
 import { getBlog } from '../controllers/Blog/blog.controller.mts';
 import { uploadBlog } from '../controllers/Blog/uploadBlog.mts';
 import { countBlogs } from '../controllers/Blog/blog.home.controller.mts';
+import { getBlogByPage } from '../controllers/Blog/blog.home.controller.mts';
 const upload = multerConfig() 
 //[POST] - UPLOAD BLOG 
 router.post('/blog-upload', upload.single('banner'), uploadBlog)
@@ -11,4 +12,5 @@ router.post('/blog-upload', upload.single('banner'), uploadBlog)
 router.post('/blog-info' , getBlog)
 //[GET]  - BLOG FOR HOMEPAGE
 router.get('/count-blog' ,  countBlogs)
+router.post('/get-blog-by-page' , getBlogByPage) 
 export {router}

@@ -1035,6 +1035,36 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type UsersCountOutputType
+   */
+
+  export type UsersCountOutputType = {
+    Blogs: number
+  }
+
+  export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Blogs?: boolean | UsersCountOutputTypeCountBlogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UsersCountOutputType
+     */
+    select?: UsersCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountBlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlogsWhereInput
+  }
+
 
   /**
    * Models
@@ -1286,6 +1316,7 @@ export namespace Prisma {
     createdAt?: boolean
     watchs?: boolean
     updatedAt?: boolean
+    author?: boolean | UsersDefaultArgs<ExtArgs>
     TopBlogs?: boolean | Blogs$TopBlogsArgs<ExtArgs>
   }, ExtArgs["result"]["blogs"]>
 
@@ -1306,12 +1337,14 @@ export namespace Prisma {
 
   export type BlogsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"blogID" | "title" | "banner" | "content" | "score" | "views" | "userID" | "createdAt" | "watchs" | "updatedAt", ExtArgs["result"]["blogs"]>
   export type BlogsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | UsersDefaultArgs<ExtArgs>
     TopBlogs?: boolean | Blogs$TopBlogsArgs<ExtArgs>
   }
 
   export type $BlogsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Blogs"
     objects: {
+      author: Prisma.$UsersPayload<ExtArgs>
       TopBlogs: Prisma.$TopBlogsPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1665,6 +1698,7 @@ export namespace Prisma {
    */
   export interface Prisma__BlogsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     TopBlogs<T extends Blogs$TopBlogsArgs<ExtArgs> = {}>(args?: Subset<T, Blogs$TopBlogsArgs<ExtArgs>>): Prisma__TopBlogsClient<$Result.GetResult<Prisma.$TopBlogsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3137,6 +3171,8 @@ export namespace Prisma {
     avatar?: boolean
     name?: boolean
     username?: boolean
+    Blogs?: boolean | Users$BlogsArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
 
@@ -3149,10 +3185,16 @@ export namespace Prisma {
   }
 
   export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"userID" | "avatar" | "name" | "username", ExtArgs["result"]["users"]>
+  export type UsersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Blogs?: boolean | Users$BlogsArgs<ExtArgs>
+    _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
+  }
 
   export type $UsersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Users"
-    objects: {}
+    objects: {
+      Blogs: Prisma.$BlogsPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       userID: string
       avatar: string
@@ -3498,6 +3540,7 @@ export namespace Prisma {
    */
   export interface Prisma__UsersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    Blogs<T extends Users$BlogsArgs<ExtArgs> = {}>(args?: Subset<T, Users$BlogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3548,6 +3591,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where: UsersWhereUniqueInput
@@ -3566,6 +3613,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where: UsersWhereUniqueInput
@@ -3583,6 +3634,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -3632,6 +3687,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UsersWhereInput
@@ -3680,6 +3739,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UsersWhereInput
@@ -3723,6 +3786,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * The data needed to create a Users.
      */
     data: XOR<UsersCreateInput, UsersUncheckedCreateInput>
@@ -3751,6 +3818,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
     /**
      * The data needed to update a Users.
      */
@@ -3792,6 +3863,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * The filter to search for the Users to update in case it exists.
      */
     where: UsersWhereUniqueInput
@@ -3818,6 +3893,10 @@ export namespace Prisma {
      */
     omit?: UsersOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
+    /**
      * Filter which Users to delete.
      */
     where: UsersWhereUniqueInput
@@ -3838,6 +3917,30 @@ export namespace Prisma {
   }
 
   /**
+   * Users.Blogs
+   */
+  export type Users$BlogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Blogs
+     */
+    select?: BlogsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Blogs
+     */
+    omit?: BlogsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlogsInclude<ExtArgs> | null
+    where?: BlogsWhereInput
+    orderBy?: BlogsOrderByWithRelationInput | BlogsOrderByWithRelationInput[]
+    cursor?: BlogsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlogsScalarFieldEnum | BlogsScalarFieldEnum[]
+  }
+
+  /**
    * Users without action
    */
   export type UsersDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3849,6 +3952,10 @@ export namespace Prisma {
      * Omit specific fields from the Users
      */
     omit?: UsersOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UsersInclude<ExtArgs> | null
   }
 
 
@@ -3995,6 +4102,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Blogs"> | Date | string
     watchs?: IntFilter<"Blogs"> | number
     updatedAt?: DateTimeFilter<"Blogs"> | Date | string
+    author?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     TopBlogs?: XOR<TopBlogsNullableScalarRelationFilter, TopBlogsWhereInput> | null
   }
 
@@ -4009,6 +4117,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     watchs?: SortOrder
     updatedAt?: SortOrder
+    author?: UsersOrderByWithRelationInput
     TopBlogs?: TopBlogsOrderByWithRelationInput
     _relevance?: BlogsOrderByRelevanceInput
   }
@@ -4027,6 +4136,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Blogs"> | Date | string
     watchs?: IntFilter<"Blogs"> | number
     updatedAt?: DateTimeFilter<"Blogs"> | Date | string
+    author?: XOR<UsersScalarRelationFilter, UsersWhereInput>
     TopBlogs?: XOR<TopBlogsNullableScalarRelationFilter, TopBlogsWhereInput> | null
   }, "blogID">
 
@@ -4113,6 +4223,7 @@ export namespace Prisma {
     avatar?: StringFilter<"Users"> | string
     name?: StringFilter<"Users"> | string
     username?: StringFilter<"Users"> | string
+    Blogs?: BlogsListRelationFilter
   }
 
   export type UsersOrderByWithRelationInput = {
@@ -4120,6 +4231,7 @@ export namespace Prisma {
     avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
+    Blogs?: BlogsOrderByRelationAggregateInput
     _relevance?: UsersOrderByRelevanceInput
   }
 
@@ -4131,6 +4243,7 @@ export namespace Prisma {
     NOT?: UsersWhereInput | UsersWhereInput[]
     avatar?: StringFilter<"Users"> | string
     name?: StringFilter<"Users"> | string
+    Blogs?: BlogsListRelationFilter
   }, "userID" | "username">
 
   export type UsersOrderByWithAggregationInput = {
@@ -4160,10 +4273,10 @@ export namespace Prisma {
     content: string
     score: number
     views: number
-    userID: string
     createdAt: Date | string
     watchs: number
     updatedAt: Date | string
+    author: UsersCreateNestedOneWithoutBlogsInput
     TopBlogs?: TopBlogsCreateNestedOneWithoutBlogsInput
   }
 
@@ -4188,10 +4301,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
-    userID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     watchs?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UsersUpdateOneRequiredWithoutBlogsNestedInput
     TopBlogs?: TopBlogsUpdateOneWithoutBlogsNestedInput
   }
 
@@ -4229,7 +4342,6 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
-    userID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     watchs?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4287,6 +4399,7 @@ export namespace Prisma {
     avatar: string
     name: string
     username: string
+    Blogs?: BlogsCreateNestedManyWithoutAuthorInput
   }
 
   export type UsersUncheckedCreateInput = {
@@ -4294,6 +4407,7 @@ export namespace Prisma {
     avatar: string
     name: string
     username: string
+    Blogs?: BlogsUncheckedCreateNestedManyWithoutAuthorInput
   }
 
   export type UsersUpdateInput = {
@@ -4301,6 +4415,7 @@ export namespace Prisma {
     avatar?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    Blogs?: BlogsUpdateManyWithoutAuthorNestedInput
   }
 
   export type UsersUncheckedUpdateInput = {
@@ -4308,6 +4423,7 @@ export namespace Prisma {
     avatar?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     username?: StringFieldUpdateOperationsInput | string
+    Blogs?: BlogsUncheckedUpdateManyWithoutAuthorNestedInput
   }
 
   export type UsersCreateManyInput = {
@@ -4381,6 +4497,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type UsersScalarRelationFilter = {
+    is?: UsersWhereInput
+    isNot?: UsersWhereInput
   }
 
   export type TopBlogsNullableScalarRelationFilter = {
@@ -4542,6 +4663,16 @@ export namespace Prisma {
     blogID?: SortOrder
   }
 
+  export type BlogsListRelationFilter = {
+    every?: BlogsWhereInput
+    some?: BlogsWhereInput
+    none?: BlogsWhereInput
+  }
+
+  export type BlogsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UsersOrderByRelevanceInput = {
     fields: UsersOrderByRelevanceFieldEnum | UsersOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -4567,6 +4698,12 @@ export namespace Prisma {
     avatar?: SortOrder
     name?: SortOrder
     username?: SortOrder
+  }
+
+  export type UsersCreateNestedOneWithoutBlogsInput = {
+    create?: XOR<UsersCreateWithoutBlogsInput, UsersUncheckedCreateWithoutBlogsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutBlogsInput
+    connect?: UsersWhereUniqueInput
   }
 
   export type TopBlogsCreateNestedOneWithoutBlogsInput = {
@@ -4601,6 +4738,14 @@ export namespace Prisma {
     set?: Date | string
   }
 
+  export type UsersUpdateOneRequiredWithoutBlogsNestedInput = {
+    create?: XOR<UsersCreateWithoutBlogsInput, UsersUncheckedCreateWithoutBlogsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutBlogsInput
+    upsert?: UsersUpsertWithoutBlogsInput
+    connect?: UsersWhereUniqueInput
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutBlogsInput, UsersUpdateWithoutBlogsInput>, UsersUncheckedUpdateWithoutBlogsInput>
+  }
+
   export type TopBlogsUpdateOneWithoutBlogsNestedInput = {
     create?: XOR<TopBlogsCreateWithoutBlogsInput, TopBlogsUncheckedCreateWithoutBlogsInput>
     connectOrCreate?: TopBlogsCreateOrConnectWithoutBlogsInput
@@ -4633,6 +4778,48 @@ export namespace Prisma {
     upsert?: BlogsUpsertWithoutTopBlogsInput
     connect?: BlogsWhereUniqueInput
     update?: XOR<XOR<BlogsUpdateToOneWithWhereWithoutTopBlogsInput, BlogsUpdateWithoutTopBlogsInput>, BlogsUncheckedUpdateWithoutTopBlogsInput>
+  }
+
+  export type BlogsCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput> | BlogsCreateWithoutAuthorInput[] | BlogsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogsCreateOrConnectWithoutAuthorInput | BlogsCreateOrConnectWithoutAuthorInput[]
+    createMany?: BlogsCreateManyAuthorInputEnvelope
+    connect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+  }
+
+  export type BlogsUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput> | BlogsCreateWithoutAuthorInput[] | BlogsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogsCreateOrConnectWithoutAuthorInput | BlogsCreateOrConnectWithoutAuthorInput[]
+    createMany?: BlogsCreateManyAuthorInputEnvelope
+    connect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+  }
+
+  export type BlogsUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput> | BlogsCreateWithoutAuthorInput[] | BlogsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogsCreateOrConnectWithoutAuthorInput | BlogsCreateOrConnectWithoutAuthorInput[]
+    upsert?: BlogsUpsertWithWhereUniqueWithoutAuthorInput | BlogsUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BlogsCreateManyAuthorInputEnvelope
+    set?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    disconnect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    delete?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    connect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    update?: BlogsUpdateWithWhereUniqueWithoutAuthorInput | BlogsUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BlogsUpdateManyWithWhereWithoutAuthorInput | BlogsUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BlogsScalarWhereInput | BlogsScalarWhereInput[]
+  }
+
+  export type BlogsUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput> | BlogsCreateWithoutAuthorInput[] | BlogsUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: BlogsCreateOrConnectWithoutAuthorInput | BlogsCreateOrConnectWithoutAuthorInput[]
+    upsert?: BlogsUpsertWithWhereUniqueWithoutAuthorInput | BlogsUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: BlogsCreateManyAuthorInputEnvelope
+    set?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    disconnect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    delete?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    connect?: BlogsWhereUniqueInput | BlogsWhereUniqueInput[]
+    update?: BlogsUpdateWithWhereUniqueWithoutAuthorInput | BlogsUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: BlogsUpdateManyWithWhereWithoutAuthorInput | BlogsUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: BlogsScalarWhereInput | BlogsScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4775,6 +4962,25 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UsersCreateWithoutBlogsInput = {
+    userID: string
+    avatar: string
+    name: string
+    username: string
+  }
+
+  export type UsersUncheckedCreateWithoutBlogsInput = {
+    userID: string
+    avatar: string
+    name: string
+    username: string
+  }
+
+  export type UsersCreateOrConnectWithoutBlogsInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutBlogsInput, UsersUncheckedCreateWithoutBlogsInput>
+  }
+
   export type TopBlogsCreateWithoutBlogsInput = {
     topBlogID?: string
   }
@@ -4786,6 +4992,31 @@ export namespace Prisma {
   export type TopBlogsCreateOrConnectWithoutBlogsInput = {
     where: TopBlogsWhereUniqueInput
     create: XOR<TopBlogsCreateWithoutBlogsInput, TopBlogsUncheckedCreateWithoutBlogsInput>
+  }
+
+  export type UsersUpsertWithoutBlogsInput = {
+    update: XOR<UsersUpdateWithoutBlogsInput, UsersUncheckedUpdateWithoutBlogsInput>
+    create: XOR<UsersCreateWithoutBlogsInput, UsersUncheckedCreateWithoutBlogsInput>
+    where?: UsersWhereInput
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutBlogsInput = {
+    where?: UsersWhereInput
+    data: XOR<UsersUpdateWithoutBlogsInput, UsersUncheckedUpdateWithoutBlogsInput>
+  }
+
+  export type UsersUpdateWithoutBlogsInput = {
+    userID?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UsersUncheckedUpdateWithoutBlogsInput = {
+    userID?: StringFieldUpdateOperationsInput | string
+    avatar?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
   }
 
   export type TopBlogsUpsertWithoutBlogsInput = {
@@ -4814,10 +5045,10 @@ export namespace Prisma {
     content: string
     score: number
     views: number
-    userID: string
     createdAt: Date | string
     watchs: number
     updatedAt: Date | string
+    author: UsersCreateNestedOneWithoutBlogsInput
   }
 
   export type BlogsUncheckedCreateWithoutTopBlogsInput = {
@@ -4856,10 +5087,10 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
-    userID?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     watchs?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: UsersUpdateOneRequiredWithoutBlogsNestedInput
   }
 
   export type BlogsUncheckedUpdateWithoutTopBlogsInput = {
@@ -4870,6 +5101,124 @@ export namespace Prisma {
     score?: IntFieldUpdateOperationsInput | number
     views?: IntFieldUpdateOperationsInput | number
     userID?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchs?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlogsCreateWithoutAuthorInput = {
+    blogID: string
+    title: string
+    banner?: string | null
+    content: string
+    score: number
+    views: number
+    createdAt: Date | string
+    watchs: number
+    updatedAt: Date | string
+    TopBlogs?: TopBlogsCreateNestedOneWithoutBlogsInput
+  }
+
+  export type BlogsUncheckedCreateWithoutAuthorInput = {
+    blogID: string
+    title: string
+    banner?: string | null
+    content: string
+    score: number
+    views: number
+    createdAt: Date | string
+    watchs: number
+    updatedAt: Date | string
+    TopBlogs?: TopBlogsUncheckedCreateNestedOneWithoutBlogsInput
+  }
+
+  export type BlogsCreateOrConnectWithoutAuthorInput = {
+    where: BlogsWhereUniqueInput
+    create: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BlogsCreateManyAuthorInputEnvelope = {
+    data: BlogsCreateManyAuthorInput | BlogsCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BlogsUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: BlogsWhereUniqueInput
+    update: XOR<BlogsUpdateWithoutAuthorInput, BlogsUncheckedUpdateWithoutAuthorInput>
+    create: XOR<BlogsCreateWithoutAuthorInput, BlogsUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type BlogsUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: BlogsWhereUniqueInput
+    data: XOR<BlogsUpdateWithoutAuthorInput, BlogsUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type BlogsUpdateManyWithWhereWithoutAuthorInput = {
+    where: BlogsScalarWhereInput
+    data: XOR<BlogsUpdateManyMutationInput, BlogsUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type BlogsScalarWhereInput = {
+    AND?: BlogsScalarWhereInput | BlogsScalarWhereInput[]
+    OR?: BlogsScalarWhereInput[]
+    NOT?: BlogsScalarWhereInput | BlogsScalarWhereInput[]
+    blogID?: StringFilter<"Blogs"> | string
+    title?: StringFilter<"Blogs"> | string
+    banner?: StringNullableFilter<"Blogs"> | string | null
+    content?: StringFilter<"Blogs"> | string
+    score?: IntFilter<"Blogs"> | number
+    views?: IntFilter<"Blogs"> | number
+    userID?: StringFilter<"Blogs"> | string
+    createdAt?: DateTimeFilter<"Blogs"> | Date | string
+    watchs?: IntFilter<"Blogs"> | number
+    updatedAt?: DateTimeFilter<"Blogs"> | Date | string
+  }
+
+  export type BlogsCreateManyAuthorInput = {
+    blogID: string
+    title: string
+    banner?: string | null
+    content: string
+    score: number
+    views: number
+    createdAt: Date | string
+    watchs: number
+    updatedAt: Date | string
+  }
+
+  export type BlogsUpdateWithoutAuthorInput = {
+    blogID?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    views?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchs?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    TopBlogs?: TopBlogsUpdateOneWithoutBlogsNestedInput
+  }
+
+  export type BlogsUncheckedUpdateWithoutAuthorInput = {
+    blogID?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    views?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchs?: IntFieldUpdateOperationsInput | number
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    TopBlogs?: TopBlogsUncheckedUpdateOneWithoutBlogsNestedInput
+  }
+
+  export type BlogsUncheckedUpdateManyWithoutAuthorInput = {
+    blogID?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    banner?: NullableStringFieldUpdateOperationsInput | string | null
+    content?: StringFieldUpdateOperationsInput | string
+    score?: IntFieldUpdateOperationsInput | number
+    views?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     watchs?: IntFieldUpdateOperationsInput | number
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

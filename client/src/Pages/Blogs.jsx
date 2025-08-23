@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate'
 import BlogList from '../Component/Blogs/BlogList'
 import RankingList from '../Component/Blogs/RankingList'
 import api from '../Aixos/api'
+import { getBlogByPage } from '../Service/getBlogByPage'
 const sampleBlogData = {
     title: 'Đệ Quy (Recursion) trong Java | Giải thích và Ứng dụng',
     author: 'Nguyen Kha An',
@@ -51,7 +52,10 @@ function Blogs() {
     }
     // [DATA SHOW]
     useEffect(() => {
-        setDataShow(blogs.slice(page * 20, page * 20 + 20))  //CALL API TO GET DAATA SHOW APPRORIATE WITH PAGE 
+        const blogs = getBlogByPage(page).then(data => {
+            setDataShow(data.data.blogs)
+        })
+        // setDataShow(blogs.slice(page * 20, page * 20 + 20))  //CALL API TO GET DAATA SHOW APPRORIATE WITH PAGE 
     }, [page])
 
     // [GET TOTAL PAGES]
