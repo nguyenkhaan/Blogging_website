@@ -33,3 +33,10 @@ model TopBlogs {
   Blogs     Blogs  @relation(fields: [blogID], references: [blogID])
   blogID    String @unique
 }
+
+model Users {
+  userID String @id 
+  avatar String 
+  name String 
+  username String @unique
+}

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import BlogList from '../Component/Blogs/BlogList'
 import RankingList from '../Component/Blogs/RankingList'
+import api from '../Aixos/api'
 const sampleBlogData = {
     title: 'Đệ Quy (Recursion) trong Java | Giải thích và Ứng dụng',
     author: 'Nguyen Kha An',
@@ -41,13 +42,31 @@ function Blogs() {
 
     const [page, setPage] = useState(0)
     const [dataShow, setDataShow] = useState([])
+    const [totalPage , setTotalPage] = useState(0) 
+
+    // [PAGE CHANGE] 
     const handlePageClick = ({ selected }) => {
         console.log(selected)
-        setPage(selected)
+        setPage(selected)  //SET PAGE CHANGE 
     }
+    // [DATA SHOW]
     useEffect(() => {
-        setDataShow(blogs.slice(page * 20, page * 20 + 20))
+        setDataShow(blogs.slice(page * 20, page * 20 + 20))  //CALL API TO GET DAATA SHOW APPRORIATE WITH PAGE 
     }, [page])
+
+    // [GET TOTAL PAGES]
+    useEffect(() => {
+        const getTotalPage = async () => {
+            const ans = await api.get('/count-blog' , {
+                headers: {
+                    "Content-Type" : "application/json", 
+                }, 
+                withCredentials: 'include'
+            })
+            return ans 
+        }
+        getTotalPage().then(data => setTotalPage(Math.ceil(data.data / 20))) 
+    } , [])
     return (
         <>
             <div className="w-full min-h-80  grid grid-cols-16 pt-4 gap-3">

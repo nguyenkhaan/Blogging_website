@@ -39,7 +39,8 @@ async function register(req: Request , res: Response)
         code: -1, 
         message: 'Thông tin người dùng đã tồn tại'
     })
-    await createData(email , password) 
+    await createData(email , password) //Thêm dữ liệu người dùng vào mongoDB và 1 phần dữ liệu đi vào mySQL để sử dụng nhanh sau này 
+
     return res.status(200).json({
         code: 1, 
         message: 'Đăng kí thành công. Chúc bạn tận hưởng vui vẻ'

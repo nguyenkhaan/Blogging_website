@@ -1,3 +1,4 @@
+//Dung để đọc dữ liệu 1 bài Blog - Xài cho trang InnerBGlog 
 import type { Request } from "express"
 import type { Response } from "express"
 import { getData } from "../../services/Blog/crud.mts"
