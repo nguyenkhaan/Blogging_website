@@ -1,4 +1,4 @@
-import { base64Url } from "../helpers/base64Url.mts";
+import { base64Url } from "../../helpers/base64Url.mts";
 import crypto from "crypto";
 const jwtKey = btoa("18102006");
 

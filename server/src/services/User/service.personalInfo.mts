@@ -1,4 +1,4 @@
-import { mongodbPrisma } from "../config/prisma.config.mts";
+import { mongodbPrisma } from "../../config/prisma.config.mts";
 async function getData(id: string) 
 {
     const user = mongodbPrisma.user.findFirst({
