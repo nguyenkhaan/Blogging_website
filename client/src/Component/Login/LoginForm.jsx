@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Input from '../Input'
 import api from '../../Aixos/api'
 import { sendLoginData } from '../../Feature/sendLoginData'
+import store from '../../Redux/store'
 function LoginForm() {
     const [loginState, setLoginState] = useState(0);
     const navigate = useNavigate();
