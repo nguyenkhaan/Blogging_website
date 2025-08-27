@@ -20,9 +20,9 @@ function BlogItem({ blogData, preview }) {
             <div className="flex flex-col gap-1 flex-1 min-h-20">
                 <div className="flex items-center text-xs md:text-sm text-gray-600 justify-start gap-4">
                 <Link to = {`/profile?id=${author.userID}`}>
-                    <a className="hover:cursor-pointer hover:underline text-blue-700">
+                    <span className="hover:cursor-pointer hover:underline text-blue-700">
                         {author.name}
-                    </a>
+                    </span>
 
                 </Link>
                     <span title={`${new Date(createdAt).toLocaleDateString("vi-VN")}`}>

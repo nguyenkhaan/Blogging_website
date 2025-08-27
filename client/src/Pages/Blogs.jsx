@@ -71,6 +71,7 @@ function Blogs() {
         }
         getTotalPage().then(data => setTotalPage(Math.ceil(data.data / 20))) 
     } , [])
+    
     return (
         <>
             <div className="w-full min-h-80  grid grid-cols-16 pt-4 gap-3">
