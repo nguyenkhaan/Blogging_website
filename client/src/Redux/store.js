@@ -3,7 +3,7 @@ import personalSlice from "./slices/personalSlice";
 
 const store = configureStore({
     reducer: {
-        personalInfo: personalSlice
+        personalInfo: personalSlice.reducer
     }
 })
 export default store 
