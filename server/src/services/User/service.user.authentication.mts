@@ -2,6 +2,7 @@ import { getDayBetween } from "../../helpers/calcDateBetween.mts"
 import { uuid } from "../../helpers/uuid.mts"
 import { startDate , endDate } from "../../helpers/currentDate.mts"
 import { mongodbPrisma } from "../../config/prisma.config.mts"
+import { mysqlPrisma } from "../../config/prisma.config.mts"
 async function getData(email: string , password: string) 
 {
     const user = await mongodbPrisma.user.findFirst({
@@ -17,19 +18,29 @@ async function createData(email: string, password: string)
 {
     let userID = (uuid() + uuid())
     userID = userID.replace(/-/g,'').substring(0 , 24)
-    console.log(userID)
-    const user = await mongodbPrisma.user.create({
+    const userData = {
+        userID: userID, 
+        username: email, 
+        password: password, 
+        name: email, 
+        activities: Array(getDayBetween(startDate , endDate)).fill(0), 
+        avatar: 'https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg', 
+        blogs: [], 
+        famous: 0, 
+        follows: 0, 
+        subscribers: 0 
+    }
+    await mongodbPrisma.user.create({
         data: {
-            userID: userID, 
-            username: email, 
-            password: password, 
-            name: email, 
-            activities: Array(getDayBetween(startDate , endDate)).fill(0), 
-            avatar: 'https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg', 
-            blogs: [], 
-            famous: 0, 
-            follows: 0, 
-            subscribers: 0 
+            ...userData
+        }
+    })
+    await mysqlPrisma.users.create({
+        data: {
+            userID: userData.userID, 
+            name: userData.name, 
+            avatar: userData.avatar, 
+            username: userData.username
         }
     })
 } 

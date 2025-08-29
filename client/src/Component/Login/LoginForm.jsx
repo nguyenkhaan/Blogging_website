@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import Input from '../Input'
 import api from '../../Aixos/api'
 import { sendLoginData } from '../../Feature/sendLoginData'
-function LoginForm() {
+import personalSlice from '../../Redux/slices/personalSlice'
+import store from '../../Redux/store'
+
+function LoginForm() 
+{
+    const dispatch = useDispatch() 
     const [loginState, setLoginState] = useState(0);
     const navigate = useNavigate();
     useEffect(() => {
@@ -37,6 +43,8 @@ function LoginForm() {
         }
     }
     const onSuccess = (token) => {
+        const [header , payload , signature] = token.split('.') 
+        dispatch(personalSlice.actions.addInfo(JSON.parse(atob(payload))))
         localStorage.setItem('loginToken' , token)
         setLoginState(1) 
         setTimeout(() => {

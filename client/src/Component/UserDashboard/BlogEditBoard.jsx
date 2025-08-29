@@ -37,7 +37,7 @@ export default function BlogEditBoard() {
             content: finalContent
         };
         const id = (new URLSearchParams(location.search)).get('id') 
-        console.log('Submitting blog post:', submissionData);  //Du lieu nhan duoc chinh la submissionData 
+        // console.log('Submitting blog post:', submissionData);  //Du lieu nhan duoc chinh la submissionData 
         const res = await sendBlog(submissionData , id) //Gui du lieu ve server 
         if (res.data.code < 0) callingToast({type: 'error' , message: 'Lỗi đăng bài - Vui lòng thử lại sau'}) 
              else callingToast({type: 'success' , message: 'Đăng bài thành công'})

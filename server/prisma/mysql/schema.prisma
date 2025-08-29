@@ -15,21 +15,30 @@ datasource db {
 }
 
 model Blogs {
-  blogID   String    @id 
-  title    String //Tiêu đề của bài Blogs
-  banner   String? //Duong link url toi hinh anh upload len cloud 
-  content  String @db.Text//Nội dung của bài Blog !!!. Vi no la bai Blog, noi dung rat dai nen xai kieu Text la hop li 
-  score    Int //Dung de do do thanh cong cua bai Blog do, se co cong thuc rieng de tinh -> so sao 
-  views    Int //Số lượng người xem của một bài Blogs 
-  userID   String //ID cua nguoi viet Blogs 
+  blogID    String    @id
+  title     String //Tiêu đề của bài Blogs
+  banner    String? //Duong link url toi hinh anh upload len cloud 
+  content   String    @db.Text //Nội dung của bài Blog !!!. Vi no la bai Blog, noi dung rat dai nen xai kieu Text la hop li 
+  score     Int //Dung de do do thanh cong cua bai Blog do, se co cong thuc rieng de tinh -> so sao 
+  views     Int //Số lượng người xem của một bài Blogs 
+  author    Users     @relation(fields: [userID], references: [userID])
+  userID    String //ID cua nguoi viet Blogs 
   createdAt DateTime //Thời gian tạo ra bài viết
-  watchs Int //Tong so luot xem 
+  watchs    Int //Tong so luot xem 
   updatedAt DateTime //Thoi gian cap nhat bai viet gan nhat 
-  TopBlogs TopBlogs?
+  TopBlogs  TopBlogs?
 }
 
 model TopBlogs {
   topBlogID String @id @default(uuid())
   Blogs     Blogs  @relation(fields: [blogID], references: [blogID])
   blogID    String @unique
+}
+
+model Users {
+  userID   String  @id
+  avatar   String
+  name     String
+  username String  @unique
+  Blogs    Blogs[]
 }

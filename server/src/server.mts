@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import { router as blogRouter } from './routes/blog.router.mts'
 import { router as userRouter } from './routes/user.router.mts'
+import { router as searchRouter } from './routes/search.router.mts'
 import { jsonConfig , urlEncodedConfig , multerConfig , staticFileConfig } from './config/server.config.mts'
 dotenv.config({path: './.env'}) 
 
@@ -22,6 +23,7 @@ staticFileConfig(app)
 
 app.use(blogRouter) 
 app.use(userRouter) 
+app.use(searchRouter) 
 
 app.listen(6869 , function() {
     console.log('Khoi dong thanh cong') 

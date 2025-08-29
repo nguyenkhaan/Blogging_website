@@ -138,6 +138,13 @@ exports.Prisma.TopBlogsScalarFieldEnum = {
   blogID: 'blogID'
 };
 
+exports.Prisma.UsersScalarFieldEnum = {
+  userID: 'userID',
+  avatar: 'avatar',
+  name: 'name',
+  username: 'username'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -161,10 +168,18 @@ exports.Prisma.TopBlogsOrderByRelevanceFieldEnum = {
   blogID: 'blogID'
 };
 
+exports.Prisma.UsersOrderByRelevanceFieldEnum = {
+  userID: 'userID',
+  avatar: 'avatar',
+  name: 'name',
+  username: 'username'
+};
+
 
 exports.Prisma.ModelName = {
   Blogs: 'Blogs',
-  TopBlogs: 'TopBlogs'
+  TopBlogs: 'TopBlogs',
+  Users: 'Users'
 };
 
 /**

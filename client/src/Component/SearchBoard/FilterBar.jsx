@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom'
 import { useSearchParams } from 'react-router-dom';
-
+import { searchBlog } from '../../Service/searchBlog';
+import { SearchResult } from './SearchResult';
 export default function FilterBar() {
     const [searchParams] = useSearchParams();
     const blogType = searchParams.get('blogType');
@@ -10,7 +11,7 @@ export default function FilterBar() {
 
     const [searchInput, setSearchInput] = useState('');
     const [filterExpanded, setFilterExpanded] = useState(false);
-
+    const [dataShow , setDataShow] = useState([]) 
     const catagories = [
         {
             content: 'All',
@@ -50,10 +51,23 @@ export default function FilterBar() {
     ]
 
     useEffect(() => {
-        setSearchInput(searchParams.get('search'))
+        setSearchInput(searchParams.get('search'))  //Moi khi bam nut thi no se thay doi searchInput 
     }, [])
 
-
+    //to={`/search?search=${searchInput}&blogType=${blogType}&order=${order}`} 
+    useEffect(() => {
+        const search = searchParams.get('search')
+        if (search) 
+        {
+            searchBlog(search).then(data => {
+                console.log(data.data.dataSearch)
+                setDataShow(data.data.dataSearch)
+            }) 
+        }
+    } , [searchParams.get('search')])  //Khi search Paremas thay doi thi goi lai API 
+    useEffect(() => {   
+        //Khi order hoac blogType thay dopi thi thuc hien viec xu li 
+    } , [blogType , order])
     return (
         <>
             <div className='w-[95%] max-w-[600px] h-14 rounded-[40px] border-2 flex justify-between items-center overflow-hidden'>
@@ -84,7 +98,7 @@ export default function FilterBar() {
                     </div>
                 </button>
             </div>
-
+            <SearchResult searchInput = {searchInput} dataShow={dataShow} /> 
         </>
 
     )

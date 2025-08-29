@@ -1978,19 +1978,19 @@ export namespace Prisma {
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     userID?: string
+    username?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     avatar?: StringNullableFilter<"User"> | string | null
     name?: StringFilter<"User"> | string
-    username?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     follows?: IntFilter<"User"> | number
     subscribers?: IntFilter<"User"> | number
     blogs?: StringNullableListFilter<"User">
     famous?: FloatFilter<"User"> | number
     activities?: IntNullableListFilter<"User">
-  }, "userID">
+  }, "userID" | "username">
 
   export type UserOrderByWithAggregationInput = {
     userID?: SortOrder

@@ -18,7 +18,7 @@ model User {
   userID      String   @id @map("_id") @db.ObjectId
   avatar      String?
   name        String
-  username    String
+  username    String   @unique
   password    String
   follows     Int      @default(0) //So luong nguoi ma nguoi dung theo doi 
   subscribers Int      @default(0) //So luong nguoi ma nguoi dung dang ki 

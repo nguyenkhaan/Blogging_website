@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from "react";
 import { useState , useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -7,8 +8,12 @@ import MailBox from "../Component/InnerBlog/MailBox";
 import { textToHTML } from "../Helper/textToHTML";
 import { getURLQuery } from "../Service/getURLQuery";
 import { getBlogInfo } from "../Service/getBlogInfo";
+import { useDispatch, useSelector, UseSelector } from "react-redux";
+import { UseDispatch } from "react-redux";
+import blogSlice from "../Redux/slices/blogSlice";
 export default function InnerBlog() 
 {
+  const dispatch = useDispatch() 
   const [blogInfo , setBlogInfo] = useState({
     title: '', 
     content: '', 
@@ -16,24 +21,36 @@ export default function InnerBlog()
     banner: '' 
   })
   const location = useLocation() 
+  const blogID = getURLQuery(location).get('id') 
+  const blogElement = useSelector((state: RootState) => {
+    const blogLists = state.blogs;
+    if (!blogLists) return null 
+    return blogLists.find(blog => blog.blogID === blogID) || null;
+  });
+  
   useEffect(() => {
-      const blogID = getURLQuery(location).get('id') 
+    if (blogElement) {
+      setBlogInfo(blogElement);
+    } else {
       getBlogInfo(blogID).then(data => {
-        console.log(data.data.blogInfo) 
-        setBlogInfo({
-          banner: data.data.blogInfo.banner as string, 
-          content: data.data.blogInfo.content as string, 
-          blogID: blogID, 
-          title: data.data.blogInfo.title 
-        })
-      })
-  } , [])
+        const blogData = {
+          banner: data.data.blogInfo.banner as string,
+          content: data.data.blogInfo.content as string,
+          blogID: blogID,
+          title: data.data.blogInfo.title,
+        };
+  
+        setBlogInfo(blogData);
+        dispatch(blogSlice.actions.addblog(blogData));
+      });
+    }
+  }, [blogElement, blogID, dispatch]);
   return (
     <div className="w-full bg-[#F2F5F8] ">
       <main className="w-full grid grid-cols-16 items-start">
         <figure className="flex justify-center items-center overflow-hidden max-h-70 col-span-16 relative">
           <img src = {blogInfo.banner} alt="banner-pic" className = "w-full object-contain"/>
-          <h2 className="absolute text-white font-[700] text-[30px] bottom-[10%]">
+          <h2 className="absolute text-white font-[700] text-[30px] text-center bottom-[10%]">
             {blogInfo.title}
           </h2>
         </figure>
