@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { plainText } from "../../Helper/plainText";
 import { Link } from "react-router-dom";
-function BlogItem({ blogData, preview }) {
+function SearchResultsItem({ blogData }) {
     //preview: Có xem trước nội dung bài viết hay không
     //Toc do doc trung binh cua nguoi viet la 250WPM
-    let { blogID, title, author, createdAt, score, views, content = '' } = blogData;
-    let readingTime = Math.floor(content.replace(/[\s]/g, "").length / 250);  //Truyen tai them thoi gian doc tu server 
+    const {blogID , title , name , avatar , createdAt , score , updatedAt , views , watches , userID} = blogData
+    
     let Views =
         views > 1000 ? (views / 1000).toFixed(1) + "K" : views.toString();
     return (
@@ -14,22 +14,20 @@ function BlogItem({ blogData, preview }) {
             <div
                 className="rounded-full w-10 h-10 md:w-12 md:h-12 bg-black bg-center bg-cover bg-no-repeat" //Avatar
                 style={{
-                    backgroundImage: `url(${author.avatar})`,
+                    backgroundImage: `url(${avatar})`,
                 }}></div>
             {/* Thong tin tong quan ve bai viet: Tac gia - Thoi gian update - Thoi gian doc  */}
             <div className="flex flex-col gap-1 flex-1 min-h-20">
                 <div className="flex items-center text-xs md:text-sm text-gray-600 justify-start gap-4">
-                <Link to = {`/profile?id=${author.userID}`}>
+                <Link to = {`/profile?id=${userID}`}>
                     <span className="hover:cursor-pointer hover:underline text-blue-700">
-                        {author.name}
+                        {name}
                     </span>
 
                 </Link>
                     <span title={`${new Date(createdAt).toLocaleDateString("vi-VN")}`}>
                         {new Date(createdAt).toLocaleDateString("vi-VN")}
                     </span>
-                    <span className="block mx-2">-</span>
-                    <span title="20 phút đọc">{readingTime} phút đọc</span>
                 </div>
                 {/* Tieu de bai viet */}
                 <Link to = {`/blog/?id=${blogID}`}>
@@ -37,11 +35,6 @@ function BlogItem({ blogData, preview }) {
                         {title}
                     </h3>
                 </Link>
-                {preview && (
-                    <p className="text-base text-gray-800 my-2 line-clamp-3">
-                        {plainText(content)}
-                    </p>
-                )}
                 {/* So luot xem - So sao danh gia */}
                 <div className="flex gap-5 md:text-sm text-xs text-gray-600">
                     <span className="block" title="Lượt xem">
@@ -55,4 +48,4 @@ function BlogItem({ blogData, preview }) {
         </div>
     );
 }
-export default BlogItem;
+export default SearchResultsItem;
