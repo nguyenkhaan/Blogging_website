@@ -11,7 +11,7 @@ export default function FilterBar() {
 
     const [searchInput, setSearchInput] = useState('');
     const [filterExpanded, setFilterExpanded] = useState(false);
-    const [dataShow , setDataShow] = useState([]) 
+    const [searchResult , setSearchResult] = useState({}) 
     const catagories = [
         {
             content: 'All',
@@ -61,7 +61,7 @@ export default function FilterBar() {
         {
             searchBlog(search).then(data => {
                 console.log(data.data.dataSearch)
-                setDataShow(data.data.dataSearch)
+                setSearchResult({dataShow: [...data.data.dataSearch] , searchInput: search})
             }) 
         }
     } , [searchParams.get('search')])  //Khi search Paremas thay doi thi goi lai API 
@@ -98,7 +98,7 @@ export default function FilterBar() {
                     </div>
                 </button>
             </div>
-            <SearchResult searchInput = {searchInput} dataShow={dataShow} /> 
+            <SearchResult data={searchResult} /> 
         </>
 
     )
