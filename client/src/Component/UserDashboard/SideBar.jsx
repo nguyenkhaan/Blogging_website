@@ -16,8 +16,8 @@ export default function SideBar({ currentBoard, setCurrentBoard }) {
     },
     {
       icon: <i className="fa-solid fa-user"></i>,
-      title: "Profile",
-      boardName: "ProfileBoard",
+      title: "Edit Profile",
+      boardName: "ProfileEditBoard",
     },
     {
       icon: <i className="fa-solid fa-feather"></i>,
@@ -70,7 +70,6 @@ export default function SideBar({ currentBoard, setCurrentBoard }) {
             key={index}
             className={`w-full h-20 flex px-10 gap-2 items-center cursor-pointer duration-100 font-[600] relative before:absolute before:right-0 before:h-full before:w-1 before:bg-[#193CB8] before:scale-y-0 before:origin-center hover:before:scale-y-100 before:duration-100 hover:text-[20px] ${currentBoard === board.boardName ? 'bg-[#193CB8] text-white' : ''}`}
             onClick={() => setCurrentBoard(board.boardName)}
-
           >
             {board.icon}
             {board.title}

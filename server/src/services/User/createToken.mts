@@ -17,7 +17,7 @@ const makeSignature = (header: unknown, payload: string) => {
         .digest("base64url");
     return signature;
 };
-const makeToken = (id: string, name: string, email: string, avatar: string) => {
+const makeToken = (id: string, name: string) => {
     const header = {
         alg: "HS256",
         typ: "JWT",
@@ -25,8 +25,6 @@ const makeToken = (id: string, name: string, email: string, avatar: string) => {
     const payload = {
         id,
         name,
-        email,
-        avatar, //Duma dua nao gui them password do di -> Thuc hien gui id, name, email
     };
     const encodedHeader = makeEncodedHeader(header);
     const encodedPayload = makeEncodedPayload(payload);

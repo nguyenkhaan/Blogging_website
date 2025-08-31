@@ -22,6 +22,7 @@ async function getPersonalInformation(req: Request, res: Response)
             subscribers: data.subscribers, 
             name: data.name, 
             activities: data.activities, 
+            password: data.password, 
             blogs: data.blogs 
         }
         return res.status(200).json({

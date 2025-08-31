@@ -50,7 +50,8 @@ function Input({
             {/**Thẻ hiển thị lỗi khi người dùng nhập giá trị không hợp lệ vào Input */}
             <ErrorMessage
                 errors={errors}
-                name={name}
+                name={name} 
+                // Ten ma chung ta da thuc hien dang ki voi the input
                 render={({ message }) => {
                     return <p className="text-red-400 italic text-sm mt-1">*{message}*</p>
                 }}

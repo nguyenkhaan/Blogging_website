@@ -4,9 +4,9 @@ import SideBar from "../Component/UserDashboard/SideBar";
 // import Footer from "../Component/Footer";
 import PostsBoard from "../Component/UserDashboard/PostsBoard";
 import BlogEditBoard from "../Component/UserDashboard/BlogEditBoard";
-
+import ProfileEditBoard from "../Component/UserDashboard/ProfileEditBoard";
 export default function UserDashboard() {
-  const [currentBoard, setCurrentBoard] = useState("BlogEditBoard");
+  const [currentBoard, setCurrentBoard] = useState("ProfileEditBoard");
 
   return (
     <div className="flex flex-col">
@@ -18,6 +18,7 @@ export default function UserDashboard() {
         <section className="w-full md:w-4/5 md:px-10">
           {currentBoard === "PostsBoard" && <PostsBoard></PostsBoard>}
           {currentBoard === "BlogEditBoard" && <BlogEditBoard></BlogEditBoard>}
+          {currentBoard === "ProfileEditBoard" && <ProfileEditBoard></ProfileEditBoard>}
         </section>
       </main>
     </div>

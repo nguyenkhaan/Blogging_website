@@ -7,6 +7,7 @@ const allBlogs = createSelector(
     ], 
     (blogLists , id) => {
         const blogElement = blogLists.filter(blog => blog.blogID == id) 
+        console.log('>>> Check blogElement: ' , blogElement) 
         return blogElement
     } 
 ) 
