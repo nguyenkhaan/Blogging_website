@@ -29,8 +29,8 @@ export default function InnerBlog()
   });
   
   useEffect(() => {
-    if (blogElement) {
-      setBlogInfo(blogElement);
+    if (blogElement && false) {
+      setBlogInfo(blogElement);  //Khong cho doc du lieu tu redux store nua 
     } else {
       getBlogInfo(blogID).then(data => {
         const blogData = {
@@ -41,7 +41,7 @@ export default function InnerBlog()
         };
   
         setBlogInfo(blogData);
-        dispatch(blogSlice.actions.addblog(blogData));
+        // dispatch(blogSlice.actions.addblog(blogData));  //Luu du lieu vao redux store => Khong cho luu nua 
       });
     }
   }, [blogElement, blogID, dispatch]);

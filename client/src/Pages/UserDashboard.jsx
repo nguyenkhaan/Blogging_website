@@ -6,7 +6,7 @@ import PostsBoard from "../Component/UserDashboard/PostsBoard";
 import BlogEditBoard from "../Component/UserDashboard/BlogEditBoard";
 import ProfileEditBoard from "../Component/UserDashboard/ProfileEditBoard";
 export default function UserDashboard() {
-  const [currentBoard, setCurrentBoard] = useState("ProfileEditBoard");
+  const [currentBoard, setCurrentBoard] = useState("BlogEditBoard");
 
   return (
     <div className="flex flex-col">

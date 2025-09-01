@@ -8,7 +8,10 @@ import VerticalStyle from "./VerticalStyle";
 import AccountIcon from "./AccountIcon";
 import { getTokenInformation } from "../Service/tokenExtract";
 import { getUserPersonalInformation } from "../Service/getUserPersonalInformation";
-
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import personalSlice from "../Redux/slices/personalSlice" 
+import store from '../Redux/store'
 function NavbarAbove() {
     const [login, setLogin] = useState(false); //Xác định xem có đăng nhập hay không
     const [tokenData, setTokenData] = useState({
@@ -17,7 +20,8 @@ function NavbarAbove() {
         email: "nguyenkhaan2006@gmail.com",
         avatar: "https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg", //Avtar mặc định, được lưu trữ trên cloud
     }); //Dữ liệu được lưu trong jwt Token - Login sẽ được tải vào đây
-    
+    const dispatch = useDispatch() 
+    const personalInformation = useSelector((state) => state.personalInfo);
     useEffect(() => {
         if (localStorage.loginToken) {
             setLogin(true);
@@ -25,18 +29,18 @@ function NavbarAbove() {
                 //CALL API DE LAY DU LIEU NGUOI DUNG, JWT TOKEN CHI MANG USERID
                 localStorage.getItem("loginToken")
             ); //Thông tin chiết xuất ra từ token
-            const id = tokenInformation.payload.id; //Lay ra id nguoi
-            console.log('>>> Check id: ' , tokenInformation) 
+            const id = tokenInformation.payload.id; //Lay ra id nguoi dung 
             const res = getUserPersonalInformation(id).then(
                 (data) => {
-                    console.log('>>> Check data: ' , data) 
                     setTokenData({ ...data.data.data });
                 }
             ); //Giải dữ liệu nhận được vào state
             setTokenData({ ...tokenInformation.payload });
         } else setLogin(false);
     }, []);
-
+    useEffect(() => {
+        setTokenData(personalInformation) 
+    } , [personalInformation])   //Khi du lieu trong store bi thay doi thi chay lai, khong goi lai API de lay du lieu 
     return (
         <div>
             <div className="bg-blue-800 px-4 md:px-12 w-full h-12 flex items-center justify-between">

@@ -12,5 +12,5 @@ router.post('/blog-upload', upload.single('banner'), uploadBlog)
 router.post('/blog-info' , getBlog)
 //[GET]  - BLOG FOR HOMEPAGE
 router.get('/count-blog' ,  countBlogs)
-router.post('/get-blog-by-page' , getBlogByPage) 
+router.post('/get-blog-by-page' , getBlogByPage) //Dung cho trang home 
 export {router}
