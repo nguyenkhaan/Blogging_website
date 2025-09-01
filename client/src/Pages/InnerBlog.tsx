@@ -23,7 +23,7 @@ export default function InnerBlog()
   const location = useLocation() 
   const blogID = getURLQuery(location).get('id') 
   const blogElement = useSelector((state: RootState) => {
-    const blogLists = state.blogs;
+    const blogLists = state.blogInfo   //Phai la blogInfo thi moi load duoc ra tu ngan hang du lieu 
     if (!blogLists) return null 
     return blogLists.find(blog => blog.blogID === blogID) || null;
   });

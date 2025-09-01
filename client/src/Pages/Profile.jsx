@@ -10,6 +10,7 @@ import { getUserBlogs } from "../Service/getUserBlogs";
 import { getURLQuery } from "../Service/getURLQuery";
 import { getUserPersonalInformation } from "../Service/getUserPersonalInformation";
 import { getUserPersonalBlogs } from "../Service/getUserPersonalBlogs";
+import { useSelector } from "react-redux";
 function Profile() {
     const [totalPages, setTotalPages] = useState(0);
     const [userBlogs, setUserBlogs] = useState([]);
@@ -37,23 +38,24 @@ function Profile() {
         setCurrItems(userBlogs.slice(9 * (page - 1), 9 * (page - 1) + 9));
     }, [page]);
     //[LẤY DỮ LIỆU - PERSONAL INFORMATION]
+    // const personalInfoFromStore = useSelector((state) => state.personalInfo); //Lay du lieu personalInfrmation tu store
     useEffect(() => {
         const urlParams = getURLQuery(location);
         // console.log('>>>Check url params: ', urlParams.get('id'))
+        const userID = urlParams.get("id");
         const res = getUserPersonalInformation(urlParams.get("id")).then(
-            (data) => setPersonalInformation({ ...data.data.data })
+            (data) => {
+                setPersonalInformation({ ...data.data.data });
+            }
         ); //Giải dữ liệu nhận được vào state
     }, []);
     //[LẤY DỮ LIỆU - BLOGS INFORMATION]
     useEffect(() => {
-        const urlParams = getURLQuery(location) 
-        const res = getUserPersonalBlogs(urlParams.get('id')).then(
-            data => {
-                console.log(data) 
-                setUserBlogs(data.data.blogs)
-            }
-        )
-    } , [])
+        const urlParams = getURLQuery(location);
+        const res = getUserPersonalBlogs(urlParams.get("id")).then((data) => {
+            setUserBlogs(data.data.blogs);
+        });
+    }, []);
     return (
         <div className="w-full grid min-h-screen grid-cols-16 gap-8 grid-rows-1">
             <Personal personalInformation={personalInformation} />
@@ -63,7 +65,6 @@ function Profile() {
                     <Frequency activities={personalInformation.activities} />
                 </div>
                 <div className="py-4 max-xl:w-screen px-6 2xl:px-0 max-w-[1280px]">
-                
                     <Blogs userBlogs={currItems} />
                 </div>
                 <div className="w-screen max-w-[1280px] 2xl:w-full flex items-center justify-center mt-4">

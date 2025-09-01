@@ -35,7 +35,9 @@ function CalendarHeatMap(startDate, endDate, activityCount) {
     };
     const getTitleInDay = (index, day) => {
         const activityCount = heatMapData.count[index];
-        return `${activityCount} posts on ${day}`;
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };  //Dinh dang dd-mm-yyyy, Doc ngay va gio theo kieu Viet Nam vi-VN
+        if (activityCount == 5) return `4+ posts on ${(new Date(day)).toLocaleDateString('vi-VN' , options)}`;
+        return `${activityCount} posts on ${(new Date(day)).toLocaleDateString('vi-VN' , options)}`;
     };
     return {
         grid,

@@ -6,8 +6,8 @@ function HeatMap({ activities }) {
     //Tính số lượng ngày giữa startDatre và endDate
 
     const Calendar = CalendarHeatMap(
-        new Date("2016-01-01"),
-        new Date("2017-01-01"),
+        new Date("2025-01-01"),
+        new Date("2026-01-01"),
         activities
     );
     return (

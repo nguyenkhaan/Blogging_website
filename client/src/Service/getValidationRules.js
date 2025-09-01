@@ -26,7 +26,7 @@ const validationRules = {
         pattern: {
             value: /^[^\s^&*$%]+$/, // ví dụ: không chứa ^ & * $ %
             message: "Mật khẩu không được chứa ký tự đặc biệt ^ & * $ %"
-        }
+        }, 
     },
     default: {
         required: "Không được bỏ trống trường này"

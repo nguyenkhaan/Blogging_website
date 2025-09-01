@@ -7,6 +7,8 @@ import HorizontalStyle from "./HorizontalStyle";
 import VerticalStyle from "./VerticalStyle";
 import AccountIcon from "./AccountIcon";
 import { getTokenInformation } from "../Service/tokenExtract";
+import { getUserPersonalInformation } from "../Service/getUserPersonalInformation";
+
 function NavbarAbove() {
     const [login, setLogin] = useState(false); //Xác định xem có đăng nhập hay không
     const [tokenData, setTokenData] = useState({
@@ -15,15 +17,26 @@ function NavbarAbove() {
         email: "nguyenkhaan2006@gmail.com",
         avatar: "https://res.cloudinary.com/dikd164hg/image/upload/v1754925942/cld-sample-2.jpg", //Avtar mặc định, được lưu trữ trên cloud
     }); //Dữ liệu được lưu trong jwt Token - Login sẽ được tải vào đây
+    
     useEffect(() => {
         if (localStorage.loginToken) {
             setLogin(true);
             const tokenInformation = getTokenInformation(
+                //CALL API DE LAY DU LIEU NGUOI DUNG, JWT TOKEN CHI MANG USERID
                 localStorage.getItem("loginToken")
             ); //Thông tin chiết xuất ra từ token
+            const id = tokenInformation.payload.id; //Lay ra id nguoi
+            console.log('>>> Check id: ' , tokenInformation) 
+            const res = getUserPersonalInformation(id).then(
+                (data) => {
+                    console.log('>>> Check data: ' , data) 
+                    setTokenData({ ...data.data.data });
+                }
+            ); //Giải dữ liệu nhận được vào state
             setTokenData({ ...tokenInformation.payload });
         } else setLogin(false);
-    } , []);
+    }, []);
+
     return (
         <div>
             <div className="bg-blue-800 px-4 md:px-12 w-full h-12 flex items-center justify-between">
