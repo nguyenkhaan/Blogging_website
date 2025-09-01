@@ -8,9 +8,9 @@ import { getURLQuery } from "../../Service/getURLQuery";
 export default function ProfileEditBoard() 
 {
     const [personalInfo , setPersonalInfo] = useState({  //State chua thong tin ve personal info hien tai 
-        name: '24520059@gmail.com', 
+        name: '24520059@gmail.com' || '', 
         password: '123456', 
-        avatar: ''
+        avatar: '', 
     })
     const location = useLocation() 
 
@@ -18,6 +18,7 @@ export default function ProfileEditBoard()
     useEffect(() => {
         const id = getURLQuery(location).get('id') 
         getUserPersonalInformation(id).then((data) => {
+            console.log('>>> Personal loading: ' , data.data.data)
             setPersonalInfo(data.data.data)
         })
     } , [])

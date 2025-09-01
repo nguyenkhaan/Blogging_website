@@ -15,6 +15,7 @@ function getRules(name , required = '')
             return value === required || "Mật khẩu nhập vào không hợp lệ"
         }
     }
+    delete rules.required 
     return rules 
 }
 
@@ -24,7 +25,14 @@ export default function InputEdit({ name, label, handleInput , type , value}) {
     //handleInput: chua register 
     //type: loai the input: text / password / file 
     const {register , errors , clearErros } = handleInput 
-    let rules = (name === 'old_password')?  getRules(name , value) :  getRules(name) 
+    const [valueInput , setValueInput] = useState(value) 
+    let rules = (name === 'old_password')?  getRules(name , valueInput) :  getRules(name) 
+    const handleValueInput = (e) => {
+        setValueInput(e.target.value) 
+    }
+    useEffect(() => {
+        setValueInput(value) //Khi value duoc thay doi thi tien hanh re-render 
+    } , [value])
     return (
         <div className="flex flex-col my-2 justify-start flex-1 gap-2">
             <label className="font-bold text-base">{label}: </label>
@@ -32,7 +40,8 @@ export default function InputEdit({ name, label, handleInput , type , value}) {
                 type={type}
                 className="text-base text-gray-800 rounded-md px-2 py-2.5 border-2 border-solid border-gray-500"
                 {...register(name , rules)}
-                defaultValue = {(value && type != 'password')? value : ''}
+                value = {(valueInput && type != 'password')? valueInput : ''}
+                onChange={handleValueInput}
             />
             {(name === 'old_password')? 
                 <ErrorMessage 
