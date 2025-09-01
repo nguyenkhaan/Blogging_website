@@ -1,6 +1,6 @@
 import { mongodbPrisma } from "../../config/prisma.config.mts";
 import { mysqlPrisma } from "../../config/prisma.config.mts";
-async function getPersonalBlog(userID : string) 
+async function getPersonalBlog(userID : string , isContent: boolean) 
 {
     let selection = await mongodbPrisma.user.findFirst({
         where: {
@@ -21,7 +21,7 @@ async function getPersonalBlog(userID : string)
         select: {
             banner: true, 
             blogID: true, 
-            content: true, 
+            content: isContent,  //Chi dinh co can lay Content khong  
             title: true, 
             score: true  
         }

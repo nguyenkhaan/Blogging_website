@@ -30,11 +30,8 @@ function NavbarAbove() {
                 localStorage.getItem("loginToken")
             ); //Thông tin chiết xuất ra từ token
             const id = tokenInformation.payload.id; //Lay ra id nguoi dung 
-            
-            console.log('>>> Check id: ' , tokenInformation) 
             const res = getUserPersonalInformation(id).then(
                 (data) => {
-                    console.log('>>> Check data: ' , data) 
                     setTokenData({ ...data.data.data });
                 }
             ); //Giải dữ liệu nhận được vào state
