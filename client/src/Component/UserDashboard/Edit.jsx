@@ -3,6 +3,9 @@ import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import InputEdit from "./InputEdit";
 import { updatePersonalInfo } from "../../Feature/updatePersonalInfo";
+import { useDispatch } from "react-redux";
+import personalSlice from "../../Redux/slices/personalSlice";
+import { getUserPersonalInformation } from "../../Service/getUserPersonalInformation";
 
 export default function Edit({ personalInfo, setPersonalInfo }) {
     const {
@@ -20,6 +23,8 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
         preview:
             personalInfo.avatar 
     });
+    const dispatch = useDispatch() 
+
     const handleAvatarClick = () => {
         avatarRef.current.click();
     };
@@ -32,6 +37,7 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
     }, [avatar]);
 
     useEffect(() => {
+        console.log('Avatar') 
         setAvatar({preview : personalInfo.avatar})
     } , [personalInfo])
     const handleAvatarChange = (e) => {
@@ -52,7 +58,11 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
             avatar: avatar, 
         }
         //GOI API DE CAP NHAT DU LIEU
-        await updatePersonalInfo(personalInfo.id , payload).then((json) => location.reload())   
+        await updatePersonalInfo(personalInfo.id , payload).then(async (json) => {
+            const personalInformation = await getUserPersonalInformation(personalInfo.id) 
+            dispatch(personalSlice.actions.updateInfo(personalInformation.data.data))
+            console.log('>>>>' , personalInformation.data.data)
+        })   
         //Chuyen sang su dung redux de cap nhat personalInfo vao state chung
         // location.reload() 
     };

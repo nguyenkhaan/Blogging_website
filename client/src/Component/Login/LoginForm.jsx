@@ -8,7 +8,7 @@ import Input from '../Input'
 import api from '../../Aixos/api'
 import { sendLoginData } from '../../Feature/sendLoginData'
 import personalSlice from '../../Redux/slices/personalSlice'
-import store from '../../Redux/store'
+import { getUserPersonalInformation } from '../../Service/getUserPersonalInformation'
 
 function LoginForm() 
 {
@@ -42,10 +42,18 @@ function LoginForm()
             throw new Error("Loi dang nhap")  //Dang nhap bi loi 
         }
     }
-    const onSuccess = (token) => {
+
+    //Tien hanh, luu du lieu vao trong Redux 
+    const onSuccess = async (token) => {
         const [header , payload , signature] = token.split('.') 
         dispatch(personalSlice.actions.addInfo(JSON.parse(atob(payload))))
-        localStorage.setItem('loginToken' , token)
+        const id = JSON.parse(atob(payload)).id
+        localStorage.setItem('loginToken' , token)  //Luu du lieu vao trong localStorage 
+         //Luu du lieu vao trong redux 
+        getUserPersonalInformation(id).then((data) => {
+            dispatch(personalSlice.actions.addInfo(data.data.data))   //Luu du lieu vao redux 
+            console.log('>>> Data day ne: ' , data.data.data)
+        })                                        
         setLoginState(1) 
         setTimeout(() => {
             navigate('/')
