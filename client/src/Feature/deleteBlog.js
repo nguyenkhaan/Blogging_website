@@ -1,7 +1,7 @@
 import api from "../Aixos/api";
 
-async function deleteUserPersonalBlog(id) {
-    const res = await api.post('/delete-personal-blog' , {id} , {
+async function deleteUserPersonalBlog(blogID , userID) {
+    const res = await api.post('/delete-personal-blog' , {blogID , userID} , {
         headers: {
             "Content-Type" : "application/json"
         }, 

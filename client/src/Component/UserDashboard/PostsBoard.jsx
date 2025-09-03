@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import { getUserPersonalBlogs } from "../../Service/getUserPersonalBlogs";
 import { getURLQuery } from "../../Service/getURLQuery";
 import { useLocation } from "react-router-dom";
@@ -10,12 +10,12 @@ export default function PostsBoard() {
     const [postInput, setPostInput] = useState("");
     const [postDisplayCount, setPostDisplayCount] = useState(0);
     const [counter, setCounter] = useState(-1);
-    const [postData, setPostData] = useState([]);
     function handleSeeMore() {
         setPostDisplayCount((p) => Math.min(p + 20, data.length));
         setCounter((prev) => prev + 1); //Tang counter len 1 va tien hanh cap nhat blogs
     }
     const location = useLocation();
+    const queryClient = useQueryClient() 
     const { data, refetch } = useQuery({
         //useQuery se chay sau khi UI duco hien thi => Can phai co 1 cai dependecies de trang tien hanh reload lai va cap nhat lai du lieu
         //Ban dau, vi useQuery chua duoc chay nen data se la undefined, chung ta console.log(data) thi se bgi dinh undefined
@@ -26,9 +26,19 @@ export default function PostsBoard() {
             const res = await getUserPersonalBlogs(userID, false); //Truyen cai counter vao
             console.log(res.data.blogs);
             // setPostData(res.data.blogs) //Dat du lieu vao state de hien thi
-            return res.data.blogs;
+            return res.data.blogs; //Tra ve cai nay de lay du lieu tra ve data 
         },
     });
+    const {mutate} = useMutation({
+        mutationFn: async ({userID , blogID}) => {
+            const res = await deleteUserPersonalBlog(blogID , userID) 
+            queryClient.setQueriesData(['blog' , 'user' , counter] , (prev) => {
+                return prev.filter((post) => post.blogID != blogID)   //Tien hanh dat lai du lieu moi bang cach dung queryClient.setQueriesData 
+            }) 
+            console.log('Tao dang xoa, dung co hoi') 
+            return res 
+        }
+    })
     console.log(">>Check data: ", data);
     useEffect(() => {
         if (data) {
@@ -36,8 +46,12 @@ export default function PostsBoard() {
             setCounter(0);
         }
     }, [data]);
-    const handleDeleteBlog = (id) => {
-      console.log('Tien hanh xoa blog co id la: ' , id) 
+
+    const handleDeleteBlog = async (blogID) => {
+        console.log('Tien hanh xoa blog co id la: ' , blogID) 
+        const userID = getURLQuery(location).get('id') 
+        const res = mutate({blogID , userID}) //Tien hanh truyen object, khong phai truyen gia tri rieng le  
+        console.log('Ket qua xoa bai: ', res)
     }
     return (
         <section className="w-full h-full bg-white md:shadow-xl/30 rounded-[5px] p-10 flex flex-col gap-10">
@@ -118,3 +132,13 @@ function Post({ post , handleDeleteBlog}) {
         </div>
     );
 }
+
+
+/**
+ * React Query dung de lay du lieu tu API 
+ * Gom co QueryKey va queryFN 
+ * useMutation 
+ * gom co mutationFn: ham update du lieu va queryClient.setQueriesData -> Tao ra du lieu moi tu du lieu cu da lay tu useQuery 
+ * 
+ * 
+ */

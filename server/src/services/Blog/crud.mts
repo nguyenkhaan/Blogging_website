@@ -1,4 +1,5 @@
-import { mysqlPrisma } from "../../config/prisma.config.mts";
+import { mongodbPrisma, mysqlPrisma } from "../../config/prisma.config.mts";
+import { drop } from "../User/cloud.mts";
 async function createData(blog: any) {
     return await mysqlPrisma.blogs.create({
         data: {
@@ -15,7 +16,36 @@ async function createData(blog: any) {
         },
     });
 }
-async function deleteData() {}
+async function deleteData(blogID: string , userID: string) {
+    const blogInfo = await mysqlPrisma.blogs.findFirst({
+        where: {
+            blogID : blogID
+        }, 
+        select: {
+            banner: true, 
+            blogID: true 
+        }
+    })
+    await drop(blogInfo?.banner as string) //Go banner tren cloud 
+    await mysqlPrisma.blogs.delete({
+        where: {
+            blogID: blogID
+        }
+    })
+    const users = await mongodbPrisma.user.findUnique({
+        where: {userID}
+    })
+    await mongodbPrisma.user.update({
+        where: {
+            userID: userID
+        }, 
+        data: {
+            blogs: {
+                set: users?.blogs.filter(x => x != blogID)
+            }
+        }
+    })
+}
 async function updateData() {}
 async function getData(id: string) {
     const res = await mysqlPrisma.blogs.findFirst({
@@ -49,4 +79,4 @@ async function getDataForHome(page: number) {
     for (let i = 0; i < res.length; ++i) res[i].content = res[i].content.slice(0, 300) 
     return res;
 }
-export { createData, getData, getDataForHome };
+export { createData, getData, getDataForHome , deleteData };

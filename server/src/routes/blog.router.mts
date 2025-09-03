@@ -1,7 +1,7 @@
 import express from 'express' 
 const router = express.Router(); 
 import { multerConfig } from '../config/server.config.mts';
-import { getBlog } from '../controllers/Blog/blog.controller.mts';
+import { deleteBlog, getBlog } from '../controllers/Blog/blog.controller.mts';
 import { uploadBlog } from '../controllers/Blog/uploadBlog.mts';
 import { countBlogs } from '../controllers/Blog/blog.home.controller.mts';
 import { getBlogByPage } from '../controllers/Blog/blog.home.controller.mts';
@@ -13,4 +13,5 @@ router.post('/blog-info' , getBlog)
 //[GET]  - BLOG FOR HOMEPAGE
 router.get('/count-blog' ,  countBlogs)
 router.post('/get-blog-by-page' , getBlogByPage) //Dung cho trang home 
+router.post('/delete-personal-blog' , deleteBlog)
 export {router}
