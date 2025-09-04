@@ -1,11 +1,15 @@
 import React from "react";
 import { useState } from "react";
+import sendAdsEmail from "../../Service/sendAdsEmail";
+import { onSuccess } from "../../Service/callingToast";
 
 export default function MailBox() {
   const [mailInput, setMailInput] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+    sendAdsEmail(mailInput);
+    onSuccess("Email sent successfully");
     console.log("mail send: ", mailInput);
   }
 

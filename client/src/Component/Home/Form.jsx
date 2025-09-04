@@ -1,15 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { useForm } from 'react-hook-form'
+import sendAdsEmail from '../../Service/sendAdsEmail';
+import { onSuccess } from '../../Service/callingToast';
 function Form() {
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
+        sendAdsEmail(data.email)
+        onSuccess("Email sent successfully");
         console.log(data);
     }
     return (
         <>
             <h2 className="md:py-12 md:pt-16 text-3xl pt-12 py-8 md:text-4xl font-light block w-full text-center">
-                LOREM ISPUM DOLORS
+                LOOKING FOR MORE INFORMATION?
             </h2>
             <div className="flex px-8 items-center text-base justify-center">
                 <form
