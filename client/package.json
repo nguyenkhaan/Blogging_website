@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@floating-ui/react": "^0.27.15",
     "@hookform/error-message": "^2.0.1",
     "@reduxjs/toolkit": "^2.8.2",
