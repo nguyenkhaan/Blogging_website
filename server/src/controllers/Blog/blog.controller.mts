@@ -27,13 +27,25 @@ async function getBlog(req: Request , res: Response)
 
 async function deleteBlog(req: Request , res: Response) 
 {
-    console.log(req.body)
-    await deleteData(req.body.blogID , req.body.userID) 
-    console.log('Thuc hien xoa bai') 
-    return res.status(200).json({
-        code: 2, 
-        message: 'Gửi thông tin xóa bài thành công'
-    })
+    try {
+        if (!req.body || !req.body.blogID || !req.body.userID) {
+            return res.status(200).json({
+                code: -1, 
+                message: 'Thông tin gửi lên không hợp lệ'
+            })
+        }
+        await deleteData(req.body.blogID , req.body.userID) 
+        console.log('Thuc hien xoa bai') 
+        return res.status(200).json({
+            code: 2, 
+            message: 'Gửi thông tin xóa bài thành công'
+        })
+    } catch (error) {
+        return res.status(200).json({
+            code: -2, 
+            message: 'Lỗi hệ thống - vui lòng thử lại sau'
+        })
+    }
 }
 export {getBlog , deleteBlog}
 

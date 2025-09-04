@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { motion, scale } from "framer-motion";
+import { getUserPersonalInformation } from "../../Service/getUserPersonalInformation";
 import InputEdit from "./InputEdit";
 import { updatePersonalInfo } from "../../Feature/updatePersonalInfo";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import personalSlice from "../../Redux/slices/personalSlice";
-import { getUserPersonalInformation } from "../../Service/getUserPersonalInformation";
+import { callingToast, onSuccess, onError } from "../../Service/callingToast";
 
 export default function Edit({ personalInfo, setPersonalInfo }) {
     const {
@@ -20,10 +23,9 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
     });
     const avatarRef = useRef();
     const [avatar, setAvatar] = useState({
-        preview:
-            personalInfo.avatar 
+        preview: personalInfo.avatar,
     });
-    const dispatch = useDispatch() 
+    const dispatch = useDispatch();
 
     const handleAvatarClick = () => {
         avatarRef.current.click();
@@ -37,9 +39,8 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
     }, [avatar]);
 
     useEffect(() => {
-        console.log('Avatar') 
-        setAvatar({preview : personalInfo.avatar})
-    } , [personalInfo])
+        setAvatar({ preview: personalInfo.avatar });
+    }, [personalInfo]);
     const handleAvatarChange = (e) => {
         const file = e.target.files[0];
         file.preview = URL.createObjectURL(file);
@@ -53,25 +54,36 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
             id: personalInfo.id,
         });
         const payload = {
-            ...data, 
-            id: personalInfo.id, 
-            avatar: avatar, 
-        }
+            ...data,
+            id: personalInfo.id,
+            avatar: avatar,
+        };
         //GOI API DE CAP NHAT DU LIEU
-        await updatePersonalInfo(personalInfo.id , payload).then(async (json) => {
-            const personalInformation = await getUserPersonalInformation(personalInfo.id) 
-            dispatch(personalSlice.actions.updateInfo(personalInformation.data.data))
-            console.log('>>>>' , personalInformation.data.data)
-        })   
+        await updatePersonalInfo(personalInfo.id, payload).then(
+            async (json) => {
+                const personalInformation = await getUserPersonalInformation(
+                    personalInfo.id
+                );
+                if (personalInformation.data.data) {
+                    dispatch(
+                        personalSlice.actions.updateInfo(
+                            personalInformation.data.data
+                        )
+                    );
+                    onSuccess("Cập nhật thông tin thành công");
+                    console.log(">>>>", personalInformation.data.data);
+                } else onError("Cập nhật thông tin thất bại");
+            }
+        );
         //Chuyen sang su dung redux de cap nhat personalInfo vao state chung
-        // location.reload() 
+        // location.reload()
     };
 
     // [KHONG MUON THAY DOI MAT KHAU]
     useEffect(() => {
         if (!changePass) {
-            unregister("new_password");   //Go dang ki cho truong new_password
-            unregister("old_password");  //Go dang ki cho truong old_password
+            unregister("new_password"); //Go dang ki cho truong new_password
+            unregister("old_password"); //Go dang ki cho truong old_password
         }
     }, [changePass]);
     const handleChangePass = (e) => {
@@ -164,14 +176,23 @@ export default function Edit({ personalInfo, setPersonalInfo }) {
                     </div>
                 )}
                 <div className="w-full flex gap-6 items-center justify-end mt-6">
-                    <button className=" py-2 px-6 rounded-lg text-lg text-semibold cursor-pointer  text-blue-800 border-2 border-solid border-blue-800">
-                        Cancel
-                    </button>
-                    <button
+                    <Link to={`/profile?id=${personalInfo.id}`}>
+                        <motion.button
+                            className=" py-2 px-6 rounded-lg text-lg text-semibold block cursor-pointer  text-blue-800 border-2 border-solid border-blue-800"
+                            initial={{ scale: 1 }}
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.4, ease: "easeInOut" }}>
+                            Cancel
+                        </motion.button>
+                    </Link>
+                    <motion.button
                         type="submit"
-                        className=" py-2 px-6 rounded-lg text-lg text-semibold cursor-pointer text-white border-2 border-solid bg-blue-800 border-blue-800">
+                        className=" py-2 px-6 rounded-lg text-lg text-semibold cursor-pointer text-white border-2 border-solid bg-blue-800 border-blue-800"
+                        initial={{ scale: 1 }}
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ ease: "easeInOut", duration: 0.4 }}>
                         Save
-                    </button>
+                    </motion.button>
                 </div>
             </form>
         </>

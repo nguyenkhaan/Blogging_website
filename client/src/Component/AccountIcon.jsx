@@ -50,12 +50,12 @@ function AccountIcon({
                             Trang cá nhân
                         </li>
                     </Link>
-                    <Link to={`/dashboard?id=${id}`}>
+                    <Link to={`/dashboard?id=${id}&type=create`}>
                         <li className="text-sm  text-gray-700 hover:cursor-pointer hover:text-black">
                             Dash Board
                         </li>
                     </Link>
-                    <Link to={`/dashboard?id=${id}`}>
+                    <Link to={`/dashboard?id=${id}&type=create`}>
                         <li className="text-sm  text-gray-700 hover:cursor-pointer hover:text-black">
                             Viết Blog
                         </li>
