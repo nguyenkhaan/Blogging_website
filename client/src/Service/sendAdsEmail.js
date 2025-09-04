@@ -1,5 +1,4 @@
-import emailjs from "@emailjs/browser";
-
+import * as emailjs from '@emailjs/browser';
 function sendAdsEmail(userEmail) {
   const serviceID = "service_8r9d4tg";
   const templateID = "template_gsk9s2p";
