@@ -16,7 +16,7 @@ export default function UserDashboard() {
         </aside>
 
         <section className="w-full md:w-4/5 md:px-10">
-          {currentBoard === "PostsBoard" && <PostsBoard></PostsBoard>}
+          {currentBoard === "PostsBoard" && <PostsBoard setCurrentBoard = {setCurrentBoard}></PostsBoard>}
           {currentBoard === "BlogEditBoard" && <BlogEditBoard></BlogEditBoard>}
           {currentBoard === "ProfileEditBoard" && <ProfileEditBoard></ProfileEditBoard>}
         </section>

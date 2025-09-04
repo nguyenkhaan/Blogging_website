@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { deleteUserPersonalBlog } from "../../Feature/deleteBlog";
 
-export default function PostsBoard() {
+export default function PostsBoard({setCurrentBoard}) {
     const [postInput, setPostInput] = useState("");
     const [postDisplayCount, setPostDisplayCount] = useState(0);
     const [counter, setCounter] = useState(-1);
@@ -35,7 +35,6 @@ export default function PostsBoard() {
             queryClient.setQueriesData(['blog' , 'user' , counter] , (prev) => {
                 return prev.filter((post) => post.blogID != blogID)   //Tien hanh dat lai du lieu moi bang cach dung queryClient.setQueriesData 
             }) 
-            console.log('Tao dang xoa, dung co hoi') 
             return res 
         }
     })
@@ -88,7 +87,7 @@ export default function PostsBoard() {
                     data
                         .slice(0, postDisplayCount)
                         .map((post, index) => (
-                            <Post post={post} key={index} handleDeleteBlog={() => handleDeleteBlog(post.blogID)}></Post>
+                            <Post post={post} key={index} setCurrentBoard = {setCurrentBoard} handleDeleteBlog={() => handleDeleteBlog(post.blogID)}></Post>
                         ))}
                 {data && data.length > 5 && (
                     <div
@@ -102,7 +101,8 @@ export default function PostsBoard() {
     );
 }
 
-function Post({ post , handleDeleteBlog}) {
+function Post({ post , handleDeleteBlog , setCurrentBoard}) {
+    const location = useLocation() 
     return (
         <div className="w-full md:min-h-30 shadow-lg flex flex-col md:flex-row gap-5 p-5 rounded-[5px] cursor-pointer border-1 overflow-hidden items-center">
             {/* <img src={post.banner} alt="Post banner" className='h-full bg-contain' /> */}
@@ -122,7 +122,9 @@ function Post({ post , handleDeleteBlog}) {
 
             <div className="w-full md:w-10 shrink-0 flex-row md:flex-col flex justify-between items-center h-full text-white ">
                 <div className="w-8 h-8 rounded-[5px] bg-[#193CB8] flex justify-center items-center cursor-pointer duration-100 hover:text-[20px] hover:opacity-80 shrink-0 ">
-                    <i class="fa-solid fa-pen-to-square"></i>
+                    <Link to={`/dashboard?id=${getURLQuery(location).get('id')}&blogID=${post.blogID}`}>
+                    <i class="fa-solid fa-pen-to-square" onClick={() => setCurrentBoard('BlogEditBoard')}></i>
+                    </Link>
                 </div>
 
                 <div className="w-8 h-8 rounded-[5px] bg-[#ff0000] flex justify-center items-center cursor-pointer duration-100 hover:text-[20px] hover:opacity-80 shrink-0">
